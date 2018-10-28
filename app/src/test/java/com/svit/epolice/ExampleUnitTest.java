@@ -1,4 +1,4 @@
-package com.kuchhbhi.epolice;
+package com.svit.epolice;
 
 import org.junit.Test;
 

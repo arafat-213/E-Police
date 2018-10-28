@@ -1,4 +1,4 @@
-package com.kuchhbhi.epolice;
+package com.svit.epolice;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.kuchhbhi.epolice.Models.Policeman;
+import com.svit.epolice.Models.Policeman;
 
 import java.util.ArrayList;
 

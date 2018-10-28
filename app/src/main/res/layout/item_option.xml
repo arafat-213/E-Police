@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
 
-    <com.kuchhbhi.epolice.SquareCardView
+    <com.svit.epolice.SquareCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -27,5 +27,5 @@
             android:text="Place holder"
             android:textSize="8pt" />
 
-    </com.kuchhbhi.epolice.SquareCardView>
+    </com.svit.epolice.SquareCardView>
 </RelativeLayout>

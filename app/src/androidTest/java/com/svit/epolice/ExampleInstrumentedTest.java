@@ -1,4 +1,4 @@
-package com.kuchhbhi.epolice;
+package com.svit.epolice;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

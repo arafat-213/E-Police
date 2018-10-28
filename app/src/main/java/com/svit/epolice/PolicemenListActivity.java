@@ -1,11 +1,11 @@
-package com.kuchhbhi.epolice;
+package com.svit.epolice;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.kuchhbhi.epolice.Models.Policeman;
+import com.svit.epolice.Models.Policeman;
 
 import java.util.ArrayList;
 

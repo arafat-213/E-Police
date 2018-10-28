@@ -1,4 +1,4 @@
-package com.kuchhbhi.epolice.Models;
+package com.svit.epolice.Models;
 
 public class Policeman {
     int image_id;
