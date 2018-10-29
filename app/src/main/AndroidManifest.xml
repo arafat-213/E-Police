@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.svit.epolice.SplashActivity" />
-        <activity android:name="com.svit.epolice.DashboardActivity"></activity>
-        <activity android:name="com.svit.epolice.PolicemenListActivity">
+        <activity android:name="com.svit.epolice.DashboardActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="com.svit.epolice.PolicemenListActivity">
+
         </activity>
         <activity android:name="com.svit.epolice.FeedbackActivity"></activity>
     </application>

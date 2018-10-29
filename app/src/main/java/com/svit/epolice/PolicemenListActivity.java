@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.svit.epolice.Models.Policeman;
+import com.svit.epolice.adapters.PolicemanAdapter;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class PolicemenListActivity extends AppCompatActivity {
             policeman.setArea("Vadodara city");
             policeman.setEmail("jack.ryan@amazon.prime");
             policeman.setMobile_no("9876543210");
-            policeman.setRating(4.2f);
+            policeman.setRating(3.7f);
             policemanArrayList.add(policeman);
         }
 
