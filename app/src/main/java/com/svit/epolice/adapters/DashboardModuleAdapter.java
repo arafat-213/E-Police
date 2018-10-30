@@ -1,14 +1,20 @@
 package com.svit.epolice.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.svit.epolice.FeedbackActivity;
 import com.svit.epolice.Models.DashboardModule;
+import com.svit.epolice.PolicemenListActivity;
 import com.svit.epolice.R;
 
 import java.util.ArrayList;
@@ -16,10 +22,11 @@ import java.util.ArrayList;
 public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModuleAdapter.DashboardModuleViewHolder> {
 
     private ArrayList<DashboardModule> dashboardModuleArrayList;
-
+    private Context mContext;
     public DashboardModuleAdapter(ArrayList<DashboardModule> dashboardModuleArrayList) {
         this.dashboardModuleArrayList = dashboardModuleArrayList;
     }
+
 
     @NonNull
     @Override
@@ -30,9 +37,59 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DashboardModuleViewHolder dashboardModuleViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final DashboardModuleViewHolder dashboardModuleViewHolder, int i) {
         dashboardModuleViewHolder.icon.setImageResource(dashboardModuleArrayList.get(i).getIcon());
         dashboardModuleViewHolder.name.setText(dashboardModuleArrayList.get(i).getName());
+
+        dashboardModuleViewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int id = dashboardModuleViewHolder.getAdapterPosition();
+                mContext = view.getContext();
+                Intent intent;
+                switch (id) {
+                    case 0:
+                        intent = new Intent(view.getContext(), PolicemenListActivity.class);
+                        view.getContext().startActivity(intent);
+                        break;
+                    case 1:
+                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
+//                        intent = new Intent(view.getContext(), PolicemenListActivity.class);
+//                        view.getContext().startActivity(intent);
+                        break;
+                    case 2:
+                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
+//                        intent = new Intent(view.getContext(), PolicemenListActivity.class);
+//                        view.getContext().startActivity(intent);
+                        break;
+                    case 3:
+                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
+//                        intent = new Intent(view.getContext(), PolicemenListActivity.class);
+//                        view.getContext().startActivity(intent);
+                        break;
+                    case 4:
+                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
+//                        intent = new Intent(view.getContext(), PolicemenListActivity.class);
+//                        view.getContext().startActivity(intent);
+                        break;
+                    case 5:
+                        intent = new Intent(mContext, FeedbackActivity.class);
+                        mContext.startActivity(intent);
+                        break;
+                    case 6:
+                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
+//                        intent = new Intent(view.getContext(), PolicemenListActivity.class);
+//                        view.getContext().startActivity(intent);
+                        break;
+                    case 7:
+                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
+//                        intent = new Intent(view.getContext(), PolicemenListActivity.class);
+//                        view.getContext().startActivity(intent);
+                        break;
+
+                }
+            }
+        });
     }
 
     @Override
@@ -44,12 +101,14 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
 
         public ImageView icon;
         public TextView name;
+        public RelativeLayout parentLayout;
 
 
         public DashboardModuleViewHolder(@NonNull View itemView) {
             super(itemView);
             icon = itemView.findViewById(R.id.icon);
             name = itemView.findViewById(R.id.name);
+            parentLayout = itemView.findViewById(R.id.parentLayout);
         }
 
     }
