@@ -6,6 +6,9 @@
         android:title="Sign out" />
 
     <item
+        android:id="@+id/optionEditProfile"
+        android:title="Edit Profile" />
+    <item
         android:id="@+id/optionAboutUs"
         android:title="About Us" />
 </menu>
