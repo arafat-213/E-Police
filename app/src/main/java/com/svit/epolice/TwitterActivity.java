@@ -12,7 +12,9 @@ public class TwitterActivity extends AppCompatActivity {
 
     private WebView twitterWebView;
     private WebSettings twitterWebSettings;
-
+    private static final String HTML = "<a class=\"twitter-timeline\" href=\"https://twitter.com/Vadcitypolice?ref_src=twsrc%5Etfw\">Tweets by Vadcitypolice</a> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>";
+    private static final String MIME_TYPE = "text/html";
+    private static final String ENCODING = "UTF-8";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,6 @@ public class TwitterActivity extends AppCompatActivity {
         twitterWebView.setWebViewClient(new WebViewClient());
 //        twitterWebView.loadUrl("https://twitter.com/Vadcitypolice");
 //twitterWebView.loadUrl("https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw");
-        twitterWebView.loadData("<a class=\"twitter-timeline\" href=\"https://twitter.com/Vadcitypolice?ref_src=twsrc%5Etfw\">Tweets by Vadcitypolice</a> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>", "text/html", "UTF-8");
+        twitterWebView.loadData(HTML, MIME_TYPE, ENCODING);
     }
 }
