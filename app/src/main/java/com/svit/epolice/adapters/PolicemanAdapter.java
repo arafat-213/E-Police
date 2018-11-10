@@ -1,5 +1,6 @@
-package com.svit.epolice;
+package com.svit.epolice.adapters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,14 +9,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.svit.epolice.Models.Policeman;
+import com.svit.epolice.PolicemenListActivity;
+import com.svit.epolice.R;
 
 import java.util.ArrayList;
 
 public class PolicemanAdapter extends RecyclerView.Adapter<PolicemanAdapter.PolicemanViewHolder> {
 
     private ArrayList<Policeman> policemanArrayList;
+    private Context context;
 
     public PolicemanAdapter(ArrayList<Policeman> policemanArrayList) {
         this.policemanArrayList = policemanArrayList;
@@ -61,5 +66,6 @@ public class PolicemanAdapter extends RecyclerView.Adapter<PolicemanAdapter.Poli
             policemanEmail = itemView.findViewById(R.id.policeman_email);
             policemanRating = itemView.findViewById(R.id.policeman_rating);
         }
+
     }
 }
