@@ -14,7 +14,7 @@
         android:text="Police station" />
 
     <Spinner
-        android:id="@+id/policeStationSpinner"
+        android:id="@+id/policeStationsSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"></Spinner>
@@ -25,7 +25,7 @@
         android:text="Police man" />
 
     <Spinner
-        android:id="@+id/policemenSpinner"
+        android:id="@+id/policeMenSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"></Spinner>
@@ -35,7 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:rating="4.2" />
+        android:isIndicator="false"
+        android:rating="3.0" />
 
     <EditText
         android:layout_width="match_parent"
