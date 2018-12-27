@@ -16,6 +16,7 @@ import com.svit.epolice.FeedbackActivity;
 import com.svit.epolice.Models.DashboardModule;
 import com.svit.epolice.PolicemenListActivity;
 import com.svit.epolice.R;
+import com.svit.epolice.RequestPatrollingActivity;
 import com.svit.epolice.TwitterActivity;
 
 import java.util.ArrayList;
@@ -64,6 +65,8 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
 //                        view.getContext().startActivity(intent);
                         break;
                     case 3:
+                        intent = new Intent(view.getContext(), RequestPatrollingActivity.class);
+                        view.getContext().startActivity(intent);
                         Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
 //                        intent = new Intent(view.getContext(), PolicemenListActivity.class);
 //                        view.getContext().startActivity(intent);

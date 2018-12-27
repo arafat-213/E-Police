@@ -40,7 +40,7 @@ public class FeedbackActivity extends AppCompatActivity {
         ManjalpurPoliceMen.add("Policewala kaka");
 
         final ArrayList<String> oldCityPoliceMen = new ArrayList<>();
-        oldCityPoliceMen.add("S.P.Shinchan");
+        oldCityPoliceMen.add("Inspector Nabil Purawala");
 
         ArrayAdapter policeStationsAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, policeStationsArrayList);
         policeStationsSpinner.setAdapter(policeStationsAdapter);

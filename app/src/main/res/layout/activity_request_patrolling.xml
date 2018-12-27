@@ -35,16 +35,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Duration"
+            android:text="From"
             android:textSize="10pt" />
 
         <TextView
+            android:id="@+id/fromDateTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
-            android:onClick="pickADate"
             android:text="01/01/2018"
-            android:textSize="10pt" />
+            android:textSize="8pt" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -52,16 +52,17 @@
             android:layout_marginLeft="16dp"
             android:onClick="pickADate"
             android:text="To"
-            android:textSize="10pt" />
+            android:textSize="8pt" />
 
         <TextView
+            android:id="@+id/toDateTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginLeft="16dp"
             android:onClick="pickADate"
             android:text="02/01/2018"
-            android:textSize="10pt" />
+            android:textSize="8pt" />
     </LinearLayout>
 
     <LinearLayout
@@ -77,9 +78,10 @@
             android:textSize="10pt" />
 
         <Spinner
+            android:layout_width="match_parent"
             android:id="@+id/requestPatrolSpinnerArea"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></Spinner>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -102,4 +104,43 @@
             android:hint="Enter full name" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address"
+            android:textSize="10pt" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:hint="Enter full address here"
+            android:lines="5" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_above="@+id/btn"
+            android:background="@color/lightGrey"></View>
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:text="SUBMIT" />
+    </RelativeLayout>
 </LinearLayout>
