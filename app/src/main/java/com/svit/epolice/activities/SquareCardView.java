@@ -1,4 +1,4 @@
-package com.svit.epolice;
+package com.svit.epolice.activities;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -12,12 +12,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.svit.epolice.FeedbackActivity;
+import com.svit.epolice.activities.FeedbackActivity;
 import com.svit.epolice.Models.DashboardModule;
-import com.svit.epolice.PolicemenListActivity;
+import com.svit.epolice.activities.PolicemenListActivity;
 import com.svit.epolice.R;
-import com.svit.epolice.RequestPatrollingActivity;
-import com.svit.epolice.TwitterActivity;
+import com.svit.epolice.activities.RequestPatrollingActivity;
+import com.svit.epolice.activities.TwitterActivity;
 
 import java.util.ArrayList;
 

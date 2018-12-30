@@ -1,4 +1,4 @@
-package com.svit.epolice;
+package com.svit.epolice.activities;
 
 import android.app.DatePickerDialog;
 import android.nfc.Tag;
@@ -11,6 +11,8 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.svit.epolice.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,7 +45,9 @@ public class RequestPatrollingActivity extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 //                Toast.makeText(this, "Year: "+year+" Month: "+month+" ", Toast.LENGTH_SHORT).show();
                 fromDateTV.setText(day + "/" + (month + 1) + "/" + year);
-//                toDatePickerDialog.getDatePicker().setMinDate();
+                Calendar fromDate = Calendar.getInstance();
+                fromDate.set(year, month, day);
+                toDatePickerDialog.getDatePicker().setMinDate(fromDate.getTimeInMillis());
             }
         };
 
@@ -52,15 +56,22 @@ public class RequestPatrollingActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 //                Toast.makeText(this, "Year: "+year+" Month: "+month+" ", Toast.LENGTH_SHORT).show();
+                Calendar toDate = Calendar.getInstance();
+                toDate.set(year, month, day);
+                fromDatePickerDialog.getDatePicker().setMaxDate(toDate.getTimeInMillis());
                 toDateTV.setText(day + "/" + (month + 1) + "/" + year);
             }
         };
 
 
         fromDatePickerDialog = new DatePickerDialog(this, fromDateSetListener, year, month, day);
+        // Set today's date as Min FROM-date
         fromDatePickerDialog.getDatePicker().setMinDate(Calendar.getInstance().getTimeInMillis());
+
         toDatePickerDialog = new DatePickerDialog(this, toDateSetListener, year, month, day + 1);
+        // Set today's date as Min TO-date
         toDatePickerDialog.getDatePicker().setMinDate(Calendar.getInstance().getTimeInMillis());
+
 
         policeStationsArrayList = new ArrayList<>();
         policeStationsArrayList.add("Old City");
@@ -96,5 +107,4 @@ public class RequestPatrollingActivity extends AppCompatActivity {
     protected void pickADate(View view) {
 
     }
-
 }

@@ -12,18 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity" />
-        <activity android:name=".DashboardActivity">
+        <activity android:name=".activities.SplashActivity" />
+        <activity android:name=".activities.DashboardActivity" />
+        <activity android:name=".activities.PolicemenListActivity" />
+        <activity android:name=".activities.FeedbackActivity" />
+        <activity android:name=".activities.TwitterActivity" />
+        <activity android:name=".activities.RequestPatrollingActivity" />
+        <activity android:name=".activities.ComplaintActivity" />
+        <activity android:name=".activities.UserRegistrationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PolicemenListActivity" />
-        <activity android:name=".FeedbackActivity" />
-        <activity android:name=".TwitterActivity" />
-        <activity android:name=".RequestPatrollingActivity"></activity>
+        <activity android:name=".activities.SignInActivity" />
+        <activity android:name=".activities.ProfileDetailsActivity"></activity>
     </application>
 
 </manifest>

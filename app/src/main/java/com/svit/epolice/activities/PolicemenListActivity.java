@@ -1,4 +1,4 @@
-package com.svit.epolice;
+package com.svit.epolice.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.svit.epolice.Models.Policeman;
+import com.svit.epolice.R;
 import com.svit.epolice.adapters.PolicemanAdapter;
 
 import java.util.ArrayList;

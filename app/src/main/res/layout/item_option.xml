@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
 
-    <com.svit.epolice.SquareCardView
+    <com.svit.epolice.activities.SquareCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
@@ -37,5 +37,5 @@
                 android:textAlignment="center"
                 android:textSize="8pt" />
         </LinearLayout>
-    </com.svit.epolice.SquareCardView>
+    </com.svit.epolice.activities.SquareCardView>
 </RelativeLayout>
