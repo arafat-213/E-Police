@@ -1,4 +1,4 @@
-package com.svit.epolice;
+package com.svit.epolice.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import com.svit.epolice.R;
 
 import java.util.ArrayList;
 
@@ -40,7 +42,8 @@ public class FeedbackActivity extends AppCompatActivity {
         ManjalpurPoliceMen.add("Policewala kaka");
 
         final ArrayList<String> oldCityPoliceMen = new ArrayList<>();
-        oldCityPoliceMen.add("Inspector Nabil Purawala");
+        oldCityPoliceMen.add("S.P.Shinchan");
+        oldCityPoliceMen.add("Officer Jenny");
 
         ArrayAdapter policeStationsAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, policeStationsArrayList);
         policeStationsSpinner.setAdapter(policeStationsAdapter);

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">E-Police</string>
+    <string name="hint_enter_addres">enter address</string>
+    <string name="hint_complainnt_description">enter description</string>
+    <string name="keep_me_anonymous">Keep Me Anonymous</string>
+    <string name="hint_enter_email">enter email</string>
+    <string name="hint_enter_password">enter password</string>
+    <string name="btn_label_Submit">SUBMIT</string>
+    <string name="btn_label_sign_in">SIGN IN</string>
+    <string name="hint_enter_full_name">enter full name</string>
+    <string name="hint_enter_phone_no">enter phone no</string>
 </resources>

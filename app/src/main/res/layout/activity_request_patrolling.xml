@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RequestPatrollingActivity">
+    tools:context=".activities.RequestPatrollingActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,7 +50,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:onClick="pickADate"
             android:text="To"
             android:textSize="8pt" />
 
@@ -60,7 +59,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginLeft="16dp"
-            android:onClick="pickADate"
             android:text="02/01/2018"
             android:textSize="8pt" />
     </LinearLayout>
@@ -101,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:hint="Enter full name" />
+            android:hint="Enter Phone no" />
     </LinearLayout>
 
     <LinearLayout
@@ -132,7 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:layout_above="@+id/btn"
-            android:background="@color/lightGrey"></View>
+            android:background="@color/lightGrey" />
 
         <Button
             android:id="@+id/btn"

@@ -1,4 +1,4 @@
-package com.svit.epolice;
+package com.svit.epolice.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.svit.epolice.Models.DashboardModule;
+import com.svit.epolice.R;
 import com.svit.epolice.adapters.DashboardModuleAdapter;
 
 import java.util.ArrayList;

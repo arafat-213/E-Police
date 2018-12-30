@@ -1,7 +1,9 @@
-package com.svit.epolice;
+package com.svit.epolice.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.svit.epolice.R;
 
 public class SplashActivity extends AppCompatActivity {
 

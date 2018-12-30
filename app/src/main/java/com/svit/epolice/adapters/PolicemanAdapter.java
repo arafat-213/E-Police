@@ -9,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.svit.epolice.Models.Policeman;
-import com.svit.epolice.PolicemenListActivity;
 import com.svit.epolice.R;
 
 import java.util.ArrayList;
