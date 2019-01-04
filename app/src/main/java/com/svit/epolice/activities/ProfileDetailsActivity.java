@@ -20,7 +20,7 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
     private static final String TAG = ProfileDetailsActivity.class.getName();
     FirebaseUser firebaseUser;
     FirebaseAuth auth;
-    EditText edtEmail, edtname, edtPhone;
+    EditText emailET, nameET, phoneNoET, aadharNoET, dobET;
     Button btnSubmit;
     FirebaseDatabase database;
     DatabaseReference userRef;
@@ -37,16 +37,18 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
         userRef = database.getReference("users");
 
         firebaseUser = auth.getCurrentUser()/*(FirebaseUser) getIntent().getSerializableExtra("firebase_user")*/;
-        edtEmail.setText(firebaseUser.getEmail());
+        emailET.setText(firebaseUser.getEmail());
 
 
     }
 
     private void findViewById() {
-        edtEmail = findViewById(R.id.emailET);
-        edtname = findViewById(R.id.fullNameET);
-        edtPhone = findViewById(R.id.phoneNoET);
+        emailET = findViewById(R.id.emailET);
+        nameET = findViewById(R.id.nameET);
+        phoneNoET = findViewById(R.id.phoneNoET);
         btnSubmit = findViewById(R.id.submitButton);
+        aadharNoET = findViewById(R.id.aadharNoET);
+        dobET = findViewById(R.id.dobET);
         btnSubmit.setOnClickListener(this);
     }
 
@@ -59,11 +61,14 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
 
                 Log.d(TAG, "onClick: SUBMIT CALLED");
 
-                String email = edtEmail.getText().toString();
-                String name = edtname.getText().toString();
-                String phone = edtPhone.getText().toString();
+                String email = emailET.getText().toString();
+                String name = nameET.getText().toString();
+                String phone = phoneNoET.getText().toString();
+                String aadharNo = aadharNoET.getText().toString();
+                String dob = dobET.getText().toString();
+                String profilePic = "Not implemented yet";
 
-                userRef.child(firebaseUser.getUid()).setValue(new User(name, phone, email));
+                userRef.child(firebaseUser.getUid()).setValue(new User(name, phone, email, profilePic, aadharNo, dob));
 
                 Intent intent = new Intent(
                         ProfileDetailsActivity.this,

@@ -58,8 +58,10 @@
         android:id="@+id/signInTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="20dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="328dp"
-        tools:layout_editor_absoluteY="307dp"
+        app:layout_constraintBottom_toTopOf="@+id/emailET"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="@string/btn_label_sign_in" />
 </android.support.constraint.ConstraintLayout>
