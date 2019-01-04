@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.svit.epolice.activities.ComplaintActivity;
 import com.svit.epolice.activities.FeedbackActivity;
 import com.svit.epolice.Models.DashboardModule;
 import com.svit.epolice.activities.PolicemenListActivity;
@@ -55,9 +56,9 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
                         view.getContext().startActivity(intent);
                         break;
                     case 1:
-                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
-//                        intent = new Intent(view.getContext(), PolicemenListActivity.class);
-//                        view.getContext().startActivity(intent);
+//                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(view.getContext(), ComplaintActivity.class);
+                        view.getContext().startActivity(intent);
                         break;
                     case 2:
                         Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();

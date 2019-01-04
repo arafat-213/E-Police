@@ -9,4 +9,7 @@
     <string name="btn_label_sign_in">SIGN IN</string>
     <string name="hint_enter_full_name">enter full name</string>
     <string name="hint_enter_phone_no">enter phone no</string>
+    <string name="hint_enter_name">enter full name</string>
+    <string name="hint_aadhar_no">enter aadhar number</string>
+    <string name="hint_enter_dob">enter date of birth</string>
 </resources>

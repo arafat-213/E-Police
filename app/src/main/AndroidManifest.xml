@@ -14,7 +14,13 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.SplashActivity" />
         <activity android:name=".activities.DashboardActivity" />
-        <activity android:name=".activities.PolicemenListActivity" />
+        <activity android:name=".activities.PolicemenListActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.FeedbackActivity" />
         <activity android:name=".activities.TwitterActivity" />
         <activity android:name=".activities.RequestPatrollingActivity" />
