@@ -1,22 +1,15 @@
 package com.svit.epolice.activities;
 
 import android.app.DatePickerDialog;
-import android.nfc.Tag;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.svit.epolice.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class RequestPatrollingActivity extends AppCompatActivity {
 
@@ -30,7 +23,8 @@ public class RequestPatrollingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request_patrolling);
+        setContentView(R.layout.request_patrolling);
+        /*setContentView(R.layout.activity_request_patrolling);
         areaSpinner = findViewById(R.id.requestPatrolSpinnerArea);
         fromDateTV = findViewById(R.id.fromDateTV);
         toDateTV = findViewById(R.id.toDateTV);
@@ -106,5 +100,6 @@ public class RequestPatrollingActivity extends AppCompatActivity {
     }
     protected void pickADate(View view) {
 
+    }*/
     }
 }

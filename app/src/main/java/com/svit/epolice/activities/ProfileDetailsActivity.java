@@ -1,12 +1,13 @@
 package com.svit.epolice.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,12 +19,13 @@ import com.svit.epolice.R;
 public class ProfileDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = ProfileDetailsActivity.class.getName();
-    FirebaseUser firebaseUser;
-    FirebaseAuth auth;
+    FirebaseUser mFirebaseUser;
+    FirebaseAuth mFirebaseAuth;
     EditText emailET, nameET, phoneNoET, aadharNoET, dobET;
+    ImageView profilePicIV;
     Button btnSubmit;
-    FirebaseDatabase database;
-    DatabaseReference userRef;
+    FirebaseDatabase mDatabase;
+    DatabaseReference mUserRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +34,12 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
 
         findViewById();
 
-        auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
-        userRef = database.getReference("users");
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
+        mUserRef = mDatabase.getReference("users");
 
-        firebaseUser = auth.getCurrentUser()/*(FirebaseUser) getIntent().getSerializableExtra("firebase_user")*/;
-        emailET.setText(firebaseUser.getEmail());
+        mFirebaseUser = mFirebaseAuth.getCurrentUser(); /*(FirebaseUser) getIntent().getSerializableExtra("firebase_user")*/
+        emailET.setText(mFirebaseUser.getEmail());
 
 
     }
@@ -49,7 +51,10 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
         btnSubmit = findViewById(R.id.submitButton);
         aadharNoET = findViewById(R.id.aadharNoET);
         dobET = findViewById(R.id.dobET);
+        profilePicIV = findViewById(R.id.profilePicIV);
+
         btnSubmit.setOnClickListener(this);
+        profilePicIV.setOnClickListener(this);
     }
 
 
@@ -68,7 +73,7 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
                 String dob = dobET.getText().toString();
                 String profilePic = "Not implemented yet";
 
-                userRef.child(firebaseUser.getUid()).setValue(new User(name, phone, email, profilePic, aadharNo, dob));
+                mUserRef.child(mFirebaseUser.getUid()).setValue(new User(name, phone, email, profilePic, aadharNo, dob));
 
                 Intent intent = new Intent(
                         ProfileDetailsActivity.this,
@@ -77,8 +82,8 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 break;
+            case R.id.profilePicIV:
+                break;
         }
-
-
     }
 }

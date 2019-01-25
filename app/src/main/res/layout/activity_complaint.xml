@@ -19,7 +19,7 @@
         app:srcCompat="@mipmap/ic_launcher" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/areaSpinner"
         android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/addressET"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
@@ -41,38 +41,40 @@
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        android:autofillHints=""
+        app:layout_constraintTop_toBottomOf="@+id/areaSpinner" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/descriptionET"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/hint_complainnt_description"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        android:autofillHints=""
+        app:layout_constraintEnd_toEndOf="@+id/addressET"
+        app:layout_constraintStart_toStartOf="@+id/addressET"
+        app:layout_constraintTop_toBottomOf="@+id/addressET" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/isAnonymousCB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/keep_me_anonymous"
-        app:layout_constraintEnd_toEndOf="@+id/editText2"
-        app:layout_constraintStart_toStartOf="@+id/editText2"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintEnd_toEndOf="@+id/descriptionET"
+        app:layout_constraintStart_toStartOf="@+id/descriptionET"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionET" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/submitBTN"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
         android:text="@string/btn_label_Submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editText2"
-        app:layout_constraintStart_toStartOf="@+id/editText2" />
+        app:layout_constraintEnd_toEndOf="@+id/descriptionET"
+        app:layout_constraintStart_toStartOf="@+id/descriptionET" />
 </android.support.constraint.ConstraintLayout>
