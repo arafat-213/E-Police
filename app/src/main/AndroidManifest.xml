@@ -21,7 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.FeedbackActivity" />
+        <activity android:name=".activities.FeedbackActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.TwitterActivity" />
         <activity android:name=".activities.RequestPatrollingActivity" />
         <activity android:name=".activities.ComplaintActivity" />
