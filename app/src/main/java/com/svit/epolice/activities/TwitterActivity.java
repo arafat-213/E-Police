@@ -1,8 +1,8 @@
 package com.svit.epolice.activities;
 
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.webkit.WebSettings;
@@ -34,6 +34,8 @@ public class TwitterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_twitter);
         swipeRefreshLayout = findViewById(R.id.user_swipe_refresh_layout);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
         userTimelineRecyclerView = findViewById(R.id.user_timeline_recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);//it should be Vertical only
         userTimelineRecyclerView.setLayoutManager(linearLayoutManager);
@@ -91,6 +93,12 @@ public class TwitterActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 /*
         twitterWebView = findViewById(R.id.twitterWebView);

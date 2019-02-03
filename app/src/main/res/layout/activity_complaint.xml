@@ -77,4 +77,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/descriptionET"
         app:layout_constraintStart_toStartOf="@+id/descriptionET" />
+
 </android.support.constraint.ConstraintLayout>

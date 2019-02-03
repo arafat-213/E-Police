@@ -24,6 +24,8 @@ public class RequestPatrollingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.request_patrolling);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
         /*setContentView(R.layout.activity_request_patrolling);
         areaSpinner = findViewById(R.id.requestPatrolSpinnerArea);
         fromDateTV = findViewById(R.id.fromDateTV);
@@ -101,5 +103,11 @@ public class RequestPatrollingActivity extends AppCompatActivity {
     protected void pickADate(View view) {
 
     }*/
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

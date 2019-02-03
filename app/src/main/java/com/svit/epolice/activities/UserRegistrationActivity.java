@@ -53,7 +53,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
         signIntv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserRegistrationActivity.this, DashboardActivity.class);
+                Intent intent = new Intent(UserRegistrationActivity.this, SignInActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }

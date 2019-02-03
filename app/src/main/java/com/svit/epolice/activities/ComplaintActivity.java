@@ -44,6 +44,8 @@ public class ComplaintActivity extends AppCompatActivity implements View.OnClick
 
         submitBTN.setOnClickListener(this);
         isAnonymousCB.setOnClickListener(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
     }
 
     @Override
@@ -59,5 +61,11 @@ public class ComplaintActivity extends AppCompatActivity implements View.OnClick
                 mComplaintRef.child(key).setValue(new Complaint(null, area, address, desciption, isAnonymous));
                 Log.d(TAG, "Data added");
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

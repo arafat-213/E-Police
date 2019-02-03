@@ -1,8 +1,7 @@
 package com.svit.epolice.activities;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -40,7 +39,6 @@ public class DashboardActivity extends AppCompatActivity {
 //            dashboardModule.setName("Name " + (i + 1));
 //            arrayList.add(dashboardModule);
 //        }
-
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
