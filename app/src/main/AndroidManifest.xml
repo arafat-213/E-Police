@@ -13,7 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.SplashActivity" />
-        <activity android:name=".activities.DashboardActivity" />
+        <activity android:name=".activities.DashboardActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.PolicemenListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +45,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.SignInActivity" />
-        <activity android:name=".activities.ProfileDetailsActivity"></activity>
+        <activity android:name=".activities.ProfileDetailsActivity" />
+        <activity android:name=".activities.NotificationActivity"></activity>
     </application>
 
 </manifest>

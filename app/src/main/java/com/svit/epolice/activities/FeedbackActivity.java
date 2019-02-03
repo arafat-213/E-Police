@@ -76,6 +76,8 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void init() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
         policeStationsSpinner = findViewById(R.id.policeStationsSpinner);
         policeMenSpinner = findViewById(R.id.policeMenSpinner);
         anonymousCB = findViewById(R.id.anonymousCB);
@@ -131,5 +133,11 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
                 String key = mFeedbackRef.push().getKey();
                 mFeedbackRef.child(key).setValue(feedback);
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
     }
 }

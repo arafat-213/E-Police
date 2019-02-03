@@ -1,7 +1,7 @@
 package com.svit.epolice.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -24,13 +24,15 @@ public class PolicemenListActivity extends AppCompatActivity {
         policeRecyclerView = findViewById(R.id.policeRecyclerView);
         policemanArrayList = new ArrayList<Policeman>();
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
         for (int i = 0; i < 20; i++) {
             policeman = new Policeman();
             policeman.setImage_id(R.drawable.jack);
             policeman.setName("Jack Ryan");
             policeman.setRank("Commissioner of police");
             policeman.setArea("Vadodara city");
-            policeman.setEmail("jack.ryan@amazon.prime");
+            policeman.setEmail("jack@amazon.in");
             policeman.setMobile_no("9876543210");
             policeman.setRating(3.7f);
             policemanArrayList.add(policeman);
@@ -42,4 +44,18 @@ public class PolicemenListActivity extends AppCompatActivity {
         PolicemanAdapter policemanAdapter = new PolicemanAdapter(policemanArrayList);
         policeRecyclerView.setAdapter(policemanAdapter);
     }
+
+    @Override
+    public boolean onNavigateUp() {
+        finish();
+        return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
+    }
 }
+
+

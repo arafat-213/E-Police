@@ -3,131 +3,149 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteY="81dp">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         android:elevation="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/policemanIV">
+
+            </View>
 
             <ImageView
                 android:id="@+id/policemanIV"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/policemanNameTV"
                 app:srcCompat="@drawable/jack" />
 
             <TextView
                 android:id="@+id/policemanNameTV"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Jack Ryan"
+                android:layout_marginEnd="8dp"
+                android:text="Pranal Pradeepkumar Kuttappan"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/policemanIV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/policemanAreaTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="2dp"
                 android:layout_marginTop="8dp"
                 android:text="Vadodara city"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/policemanIV"
-                app:layout_constraintStart_toEndOf="@+id/policemanIV"
+                app:layout_constraintStart_toEndOf="@+id/locationIconIV"
                 app:layout_constraintTop_toBottomOf="@+id/policemanDesignationTV" />
 
             <TextView
                 android:id="@+id/policemanDesignationTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:text="Commisioner of police"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/policemanIV"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/policemanNameTV" />
 
             <ImageView
                 android:id="@+id/phoneIconIV"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:src="@drawable/round_phone_black_18"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/policemanIV" />
+                app:layout_constraintStart_toEndOf="@+id/policemanIV"
+                app:layout_constraintTop_toBottomOf="@+id/locationIconIV" />
 
             <TextView
                 android:id="@+id/policemanPhoneTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="2dp"
                 android:layout_marginTop="8dp"
                 android:text="9876543210"
                 app:layout_constraintStart_toEndOf="@+id/phoneIconIV"
-                app:layout_constraintTop_toBottomOf="@+id/policemanIV" />
+                app:layout_constraintTop_toBottomOf="@+id/policemanAreaTV" />
 
             <TextView
                 android:id="@+id/policemanEmailTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="8dp"
                 android:text="tai.arafat.at@gmail.com"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/policemanIV" />
+                app:layout_constraintTop_toBottomOf="@+id/policemanAreaTV" />
 
             <ImageView
                 android:id="@+id/emailIconIV"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="2dp"
                 android:src="@drawable/round_email_black_18"
                 app:layout_constraintEnd_toStartOf="@+id/policemanEmailTV"
-                app:layout_constraintTop_toBottomOf="@+id/policemanIV" />
+                app:layout_constraintTop_toBottomOf="@+id/policemanAreaTV" />
 
             <TextView
                 android:id="@+id/policemanRatingTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
                 android:background="@color/colorAccent"
                 android:text="4.2 ★"
                 android:textColor="@color/cardview_light_background"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/policemanIV" />
 
             <ImageView
                 android:id="@+id/locationIconIV"
                 android:layout_width="18dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="4dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
-                app:layout_constraintStart_toEndOf="@+id/policemanAreaTV"
-                app:layout_constraintTop_toBottomOf="@+id/policemanDesignationTV"
+                app:layout_constraintStart_toEndOf="@+id/policemanIV"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
                 app:srcCompat="@drawable/location_pin" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toEndOf="@+id/policemanIV"
+                app:layout_constraintTop_toBottomOf="@+id/policemanNameTV"
+                app:srcCompat="@drawable/ic_person_black_24dp" />
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>
