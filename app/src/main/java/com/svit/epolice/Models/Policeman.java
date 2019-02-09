@@ -9,6 +9,28 @@ public class Policeman {
     String rank;
     String area;
 
+    public Policeman(int image_id, String name, float rating, String mobile_no, String email, String rank, String area) {
+        this.image_id = image_id;
+        this.name = name;
+        this.rating = rating;
+        this.mobile_no = mobile_no;
+        this.email = email;
+        this.rank = rank;
+        this.area = area;
+    }
+
+    public Policeman(int image_id, String name, String mobile_no, String email, String rank, String area) {
+        this.image_id = image_id;
+        this.name = name;
+        this.mobile_no = mobile_no;
+        this.email = email;
+        this.rank = rank;
+        this.area = area;
+    }
+
+    public Policeman() {
+    }
+
     public String getArea() {
         return area;
     }

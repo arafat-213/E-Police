@@ -1,6 +1,5 @@
 package com.svit.epolice.adapters;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,18 +9,22 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.svit.epolice.Models.Policeman;
 import com.svit.epolice.R;
 
-import java.util.ArrayList;
+public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, PolicemanAdapter.PolicemanViewHolder> {
 
-public class PolicemanAdapter extends RecyclerView.Adapter<PolicemanAdapter.PolicemanViewHolder> {
 
-    private ArrayList<Policeman> policemanArrayList;
-    private Context context;
-
-    public PolicemanAdapter(ArrayList<Policeman> policemanArrayList) {
-        this.policemanArrayList = policemanArrayList;
+    /**
+     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
+     * {@link FirebaseRecyclerOptions} for configuration options.
+     *
+     * @param options
+     */
+    public PolicemanAdapter(@NonNull FirebaseRecyclerOptions<Policeman> options) {
+        super(options);
     }
 
     @NonNull
@@ -33,20 +36,16 @@ public class PolicemanAdapter extends RecyclerView.Adapter<PolicemanAdapter.Poli
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PolicemanViewHolder policemanViewHolder, int i) {
-        policemanViewHolder.policemanImage.setImageResource(policemanArrayList.get(i).getImage_id());
-        policemanViewHolder.policemanName.setText(policemanArrayList.get(i).getName());
-        policemanViewHolder.policemanRank.setText(policemanArrayList.get(i).getRank());
-        policemanViewHolder.policemanArea.setText(policemanArrayList.get(i).getArea());
-        policemanViewHolder.policemanPhone.setText(policemanArrayList.get(i).getMobile_no());
-        policemanViewHolder.policemanEmail.setText(policemanArrayList.get(i).getEmail());
-        policemanViewHolder.policemanRatingTV.setText(policemanArrayList.get(i).getRating() + " ★");
-//        policemanViewHolder.policemanRating.setRating(policemanArrayList.get(i).getRating());
-    }
+    protected void onBindViewHolder(@NonNull PolicemanViewHolder policemanViewHolder, int position, @NonNull Policeman model) {
+        policemanViewHolder.policemanImage.setImageResource(model.getImage_id());
+        policemanViewHolder.policemanName.setText(model.getName());
+        policemanViewHolder.policemanRank.setText(model.getRank());
+        policemanViewHolder.policemanArea.setText(model.getArea());
+        policemanViewHolder.policemanPhone.setText(model.getMobile_no());
+        policemanViewHolder.policemanEmail.setText(model.getEmail());
+        policemanViewHolder.policemanRatingTV.setText(model.getRating() + " ★");
+//        policemanViewHolder.policemanRating.setRating(model.getRating());
 
-    @Override
-    public int getItemCount() {
-        return policemanArrayList.size();
     }
 
     public class PolicemanViewHolder extends RecyclerView.ViewHolder {
