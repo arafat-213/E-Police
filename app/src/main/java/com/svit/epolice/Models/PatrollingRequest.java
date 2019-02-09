@@ -1,18 +1,27 @@
 package com.svit.epolice.Models;
 
 public class PatrollingRequest {
-    private String fromDate, toDate, fullName, address, phoneNo;
+    private String fromDate, toDate, fullName, address, phoneNo, area;
 
-    public PatrollingRequest(String fromDate, String toDate, String fullName, String address, String phoneNo) {
+    public PatrollingRequest(String fromDate, String toDate, String fullName, String address, String phoneNo, String area) {
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.fullName = fullName;
         this.address = address;
         this.phoneNo = phoneNo;
+        this.area = area;
     }
 
     public PatrollingRequest() {
 
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 
     public String getFromDate() {
