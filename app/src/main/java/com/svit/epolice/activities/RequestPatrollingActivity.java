@@ -6,6 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.svit.epolice.Models.PatrollingRequest;
 import com.svit.epolice.R;
 
 import java.util.ArrayList;
@@ -19,6 +23,7 @@ public class RequestPatrollingActivity extends AppCompatActivity {
     private Spinner areaSpinner;
     private ArrayList<String> policeStationsArrayList;
     private String TAG = "RequestPatrolling";
+    DatabaseReference mRequestsRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,23 @@ public class RequestPatrollingActivity extends AppCompatActivity {
         setContentView(R.layout.request_patrolling);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
+        mRequestsRef = FirebaseDatabase.getInstance().getReference().child("requests");
+        String key = mRequestsRef.push().getKey();
+        mRequestsRef.child(key).setValue(
+                new PatrollingRequest(
+                        "13/02/2018",
+                        "16/02/2018",
+                        "Tai Arfat Zakir",
+                        "Dabhoiwala Mansion, Near Swami Narayan temple, Wadi, Vadodara-17",
+                        "9876543210",
+                        "Wadi"
+                )
+        ).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                finish();
+            }
+        });
         /*setContentView(R.layout.activity_request_patrolling);
         areaSpinner = findViewById(R.id.requestPatrolSpinnerArea);
         fromDateTV = findViewById(R.id.fromDateTV);
