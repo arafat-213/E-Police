@@ -48,7 +48,7 @@ public class NotificationAdapter extends FirebaseRecyclerAdapter<Notification, N
         // notificationViewHolder.notifyImage.setImageResource(notificationArrayList.get(i).getNotificationImage());
     }
 
-    
+
 
     class NotificationViewHolder extends RecyclerView.ViewHolder {
 
