@@ -1,9 +1,9 @@
 package com.svit.epolice.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -44,7 +44,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
-        progressBar = findViewById(R.id.progressbar);
+        progressBar = findViewById(R.id.requestPB);
 
         signInButton = findViewById(R.id.signInButton);
         signInButton.setOnClickListener(this);

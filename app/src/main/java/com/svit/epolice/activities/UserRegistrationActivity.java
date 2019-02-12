@@ -48,7 +48,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
         submitButton = findViewById(R.id.submitButton);
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
-        progressBar = findViewById(R.id.progressbar);
+        progressBar = findViewById(R.id.requestPB);
         signIntv = findViewById(R.id.signInTV);
         signIntv.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,10 +2,17 @@ package com.svit.epolice.activities;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -15,7 +22,7 @@ import com.svit.epolice.R;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class RequestPatrollingActivity extends AppCompatActivity {
+public class RequestPatrollingActivity extends AppCompatActivity implements View.OnClickListener {
 
     DatePickerDialog fromDatePickerDialog, toDatePickerDialog;
     TextView fromDateTV, toDateTV;
@@ -23,31 +30,21 @@ public class RequestPatrollingActivity extends AppCompatActivity {
     private Spinner areaSpinner;
     private ArrayList<String> policeStationsArrayList;
     private String TAG = "RequestPatrolling";
+    ProgressBar mProgressBar;
+    Button submitBTN;
+    EditText nameET;
+    EditText phoneET;
+    EditText addressET;
     DatabaseReference mRequestsRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.request_patrolling);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
-        mRequestsRef = FirebaseDatabase.getInstance().getReference().child("requests");
-        String key = mRequestsRef.push().getKey();
-        mRequestsRef.child(key).setValue(
-                new PatrollingRequest(
-                        "13/02/2018",
-                        "16/02/2018",
-                        "Tai Arfat Zakir",
-                        "Dabhoiwala Mansion, Near Swami Narayan temple, Wadi, Vadodara-17",
-                        "9876543210",
-                        "Wadi"
-                )
-        ).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                finish();
-            }
-        });
+        init();
+
+
+
         /*setContentView(R.layout.activity_request_patrolling);
         areaSpinner = findViewById(R.id.requestPatrolSpinnerArea);
         fromDateTV = findViewById(R.id.fromDateTV);
@@ -127,9 +124,67 @@ public class RequestPatrollingActivity extends AppCompatActivity {
     }*/
     }
 
+    public void init() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
+        submitBTN = findViewById(R.id.requestSubmitBTN);
+        submitBTN.setOnClickListener(this);
+        fromDateTV = findViewById(R.id.requestFromDateTV);
+        toDateTV = findViewById(R.id.requestToDateTV);
+        nameET = findViewById(R.id.requestNameET);
+        phoneET = findViewById(R.id.requestPhoneET);
+        addressET = findViewById(R.id.requestAddressET);
+        areaSpinner = findViewById(R.id.requestAreaSpinner);
+        mProgressBar = findViewById(R.id.requestPB);
+        mRequestsRef = FirebaseDatabase.getInstance().getReference().child("requests");
+    }
     @Override
     public boolean onSupportNavigateUp() {
         finish();
         return super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.requestSubmitBTN:
+                mProgressBar.setVisibility(View.VISIBLE);
+                submitRequest();
+                break;
+        }
+    }
+
+    public void submitRequest() {
+        String fromDate = "13/02/2018";
+        String toDate = "16/02/2018";
+        String name = "user";
+        String phone = "000";
+        String area = "vadodara";
+        String address = "N.A.";
+
+        name = nameET.getText().toString();
+        phone = phoneET.getText().toString();
+        address = phoneET.getText().toString();
+
+        PatrollingRequest patrollingRequest = new PatrollingRequest(
+                fromDate, toDate, name, address, phone, area
+        );
+        String key = mRequestsRef.push().getKey();
+        mRequestsRef.child(key).setValue(
+                patrollingRequest
+        ).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getApplicationContext(), "Request submitted", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(getApplicationContext(), "Failed to submit request", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }
