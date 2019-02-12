@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ProgressBar
+        android:id="@+id/requestPB"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/white"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        android:max="100"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/requestNameET"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -21,62 +33,62 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/requestFromDateTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/editText3"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintStart_toStartOf="@+id/requestNameET"
+        app:layout_constraintTop_toBottomOf="@+id/requestNameET" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/requestToDateTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/editText3"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintEnd_toEndOf="@+id/requestNameET"
+        app:layout_constraintTop_toBottomOf="@+id/requestNameET" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/requestAreaSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintEnd_toEndOf="@+id/requestToDateTV"
+        app:layout_constraintStart_toStartOf="@+id/requestFromDateTV"
+        app:layout_constraintTop_toBottomOf="@+id/requestFromDateTV" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/requestPhoneET"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/hint_enter_phone_no"
         android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="@+id/spinner2"
+        app:layout_constraintEnd_toEndOf="@+id/requestAreaSpinner"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/spinner2"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintStart_toStartOf="@+id/requestAreaSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/requestAreaSpinner" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/requestAddressET"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/hint_enter_addres"
         android:inputType="textPostalAddress"
-        app:layout_constraintEnd_toEndOf="@+id/editText4"
-        app:layout_constraintStart_toStartOf="@+id/editText4"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintEnd_toEndOf="@+id/requestPhoneET"
+        app:layout_constraintStart_toStartOf="@+id/requestPhoneET"
+        app:layout_constraintTop_toBottomOf="@+id/requestPhoneET" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/requestSubmitBTN"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
