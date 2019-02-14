@@ -3,14 +3,14 @@ package com.svit.epolice.Models;
 public class Feedback {
     private String policeStation;
     private String policeOfficer;
-    private float rating;
+    private String rating;
     private String description;
     private String userName;
 
     public Feedback() {
     }
 
-    public Feedback(String policeStation, String policeOfficer, float rating, String description, String userName) {
+    public Feedback(String policeStation, String policeOfficer, String rating, String description, String userName) {
         this.policeStation = policeStation;
         this.policeOfficer = policeOfficer;
         this.rating = rating;
@@ -19,7 +19,7 @@ public class Feedback {
         this.userName = userName;
     }
 
-    public Feedback(String policeStation, String policeOfficer, float rating, String description) {
+    public Feedback(String policeStation, String policeOfficer, String rating, String description) {
         this.policeStation = policeStation;
         this.policeOfficer = policeOfficer;
         this.rating = rating;
@@ -43,11 +43,11 @@ public class Feedback {
         this.policeOfficer = policeOfficer;
     }
 
-    public float getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
