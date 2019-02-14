@@ -1,6 +1,7 @@
 package com.svit.epolice.activities;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,9 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -34,6 +39,7 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
     RatingBar policeRatingBar;
     EditText descriptionET;
     Button submitBTN;
+    ProgressBar mProgressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +91,7 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
         descriptionET = findViewById(R.id.descriptionET);
         submitBTN = findViewById(R.id.submitBTN);
         submitBTN.setOnClickListener(this);
+        mProgressBar = findViewById(R.id.feedbackPB);
         policeStationsArrayList = new ArrayList<String>();
         policemenArrayList = new ArrayList<String>();
         policeStationsArrayList.add("Old City");
@@ -118,6 +125,7 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.submitBTN:
+                mProgressBar.setVisibility(View.VISIBLE);
                 String username = "anonymous";
                 Feedback feedback;
                 if (!anonymousCB.isChecked()) {
@@ -126,12 +134,31 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
                 feedback = new Feedback(
                         policeStationsSpinner.getSelectedItem().toString(),
                         policeMenSpinner.getSelectedItem().toString(),
-                        policeRatingBar.getRating(),
+                        policeRatingBar.getRating() + "",
                         descriptionET.getText().toString(),
                         username
                 );
                 String key = mFeedbackRef.push().getKey();
-                mFeedbackRef.child(key).setValue(feedback);
+                mFeedbackRef.child(key).setValue(feedback).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        if (task.isSuccessful()) {
+                            Toast.makeText(
+                                    getApplicationContext(),
+                                    "Feedback sent",
+                                    Toast.LENGTH_SHORT
+                            ).show();
+                            finish();
+                        } else {
+                            Toast.makeText(
+                                    getApplicationContext(),
+                                    "Failed to send feedback",
+                                    Toast.LENGTH_SHORT
+                            ).show();
+                        }
+                    }
+                });
         }
     }
 
