@@ -12,8 +12,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.svit.epolice.Models.PatrollingRequest;
@@ -149,42 +149,45 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
         switch (view.getId()) {
             case R.id.requestSubmitBTN:
                 mProgressBar.setVisibility(View.VISIBLE);
-                submitRequest();
+                String fromDate = "13/02/2018";
+                String toDate = "16/02/2018";
+                String name = "user";
+                String phone = "000";
+                String area = "vadodara";
+                String address = "N.A.";
+
+                name = nameET.getText().toString();
+                phone = phoneET.getText().toString();
+                address = phoneET.getText().toString();
+
+                PatrollingRequest request = new PatrollingRequest(
+                        fromDate, toDate, name, address, phone, area
+                );
+                submitRequest(request);
                 break;
         }
     }
 
-    public void submitRequest() {
-        String fromDate = "13/02/2018";
-        String toDate = "16/02/2018";
-        String name = "user";
-        String phone = "000";
-        String area = "vadodara";
-        String address = "N.A.";
+    public void submitRequest(PatrollingRequest request) {
 
-        name = nameET.getText().toString();
-        phone = phoneET.getText().toString();
-        address = phoneET.getText().toString();
-
-        PatrollingRequest patrollingRequest = new PatrollingRequest(
-                fromDate, toDate, name, address, phone, area
-        );
         String key = mRequestsRef.push().getKey();
-        mRequestsRef.child(key).setValue(
-                patrollingRequest
-        ).addOnSuccessListener(new OnSuccessListener<Void>() {
+        mRequestsRef.child(key)
+                .setValue(request)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(), "Request submitted", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
+            public void onComplete(@NonNull Task<Void> task) {
                 mProgressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getApplicationContext(), "Failed to submit request", Toast.LENGTH_SHORT).show();
+                if (task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext()
+                            , "Request sent"
+                            , Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext()
+                            , "Failed to send request"
+                            , Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
     }
 }
