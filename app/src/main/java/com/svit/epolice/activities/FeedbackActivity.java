@@ -47,10 +47,6 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
 
         init();
 
-        mDatabase = FirebaseDatabase.getInstance();
-        mFeedbackRef = mDatabase.getReference("feedback");
-
-
         policeStationsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -92,6 +88,10 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
         submitBTN = findViewById(R.id.submitBTN);
         submitBTN.setOnClickListener(this);
         mProgressBar = findViewById(R.id.feedbackPB);
+
+        mDatabase = FirebaseDatabase.getInstance();
+        mFeedbackRef = mDatabase.getReference("feedback");
+
         policeStationsArrayList = new ArrayList<String>();
         policemenArrayList = new ArrayList<String>();
         policeStationsArrayList.add("Old City");
@@ -126,11 +126,13 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
         switch (view.getId()) {
             case R.id.submitBTN:
                 mProgressBar.setVisibility(View.VISIBLE);
-                String username = "anonymous";
                 Feedback feedback;
+                String username = "anonymous";
+
                 if (!anonymousCB.isChecked()) {
                     username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
                 }
+
                 feedback = new Feedback(
                         policeStationsSpinner.getSelectedItem().toString(),
                         policeMenSpinner.getSelectedItem().toString(),
@@ -138,8 +140,15 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
                         descriptionET.getText().toString(),
                         username
                 );
-                String key = mFeedbackRef.push().getKey();
-                mFeedbackRef.child(key).setValue(feedback).addOnCompleteListener(new OnCompleteListener<Void>() {
+                sendFeedback(feedback);
+                break;
+        }
+    }
+
+    public void sendFeedback(Feedback feedback) {
+        String key = mFeedbackRef.push().getKey();
+        mFeedbackRef.child(key).setValue(feedback)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         mProgressBar.setVisibility(View.INVISIBLE);
@@ -159,7 +168,6 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
                         }
                     }
                 });
-        }
     }
 
     @Override
