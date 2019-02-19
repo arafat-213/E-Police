@@ -56,6 +56,7 @@ public class PolicemenListActivity extends AppCompatActivity {
             }
         };
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        ((LinearLayoutManager) layoutManager).setReverseLayout(true);
         policeRecyclerView.setLayoutManager(layoutManager);
         policeRecyclerView.setAdapter(mPolicemanAdapter);
     }
