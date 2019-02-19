@@ -14,4 +14,5 @@
     <string name="hint_enter_dob">enter date of birth</string>
     <string name="police_station">Police station</string>
     <string name="police_officer">Police officer</string>
+    <string name="new_user_sign_up_here">New user? Sign up here</string>
 </resources>

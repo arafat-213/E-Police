@@ -38,7 +38,10 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
         mDatabase = FirebaseDatabase.getInstance();
         mUserRef = mDatabase.getReference("users");
 
-        mFirebaseUser = mFirebaseAuth.getCurrentUser(); /*(FirebaseUser) getIntent().getSerializableExtra("firebase_user")*/
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
+
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();/*(FirebaseUser) getIntent().getSerializableExtra("firebase_user")*/
         emailET.setText(mFirebaseUser.getEmail());
 
 
@@ -57,6 +60,11 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
         profilePicIV.setOnClickListener(this);
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
+    }
 
     @Override
     public void onClick(View view) {

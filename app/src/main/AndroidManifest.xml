@@ -14,37 +14,23 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.SplashActivity" />
         <activity android:name=".activities.DashboardActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.PolicemenListActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.FeedbackActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.TwitterActivity" />
         <activity android:name=".activities.RequestPatrollingActivity" />
         <activity android:name=".activities.ComplaintActivity" />
         <activity android:name=".activities.UserRegistrationActivity">
+        </activity>
+        <activity android:name=".activities.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SignInActivity" />
         <activity android:name=".activities.ProfileDetailsActivity" />
         <activity android:name=".activities.NotificationActivity"></activity>
     </application>
