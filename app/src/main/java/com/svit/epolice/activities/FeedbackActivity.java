@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -21,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.svit.epolice.Models.Feedback;
 import com.svit.epolice.R;
+import com.svit.epolice.utilities.SpinnerData;
 
 import java.util.ArrayList;
 
@@ -46,42 +46,12 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.feedback);
 
         init();
-
-        policeStationsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i) {
-                    case 0:
-                        policeMenArrayAdapter.clear();
-                        policeMenArrayAdapter.addAll(oldCityPoliceMen);
-                        policeMenArrayAdapter.notifyDataSetChanged();
-                        break;
-                    case 2:
-                        policeMenArrayAdapter.clear();
-                        policeMenArrayAdapter.addAll(ManjalpurPoliceMen);
-                        policeMenArrayAdapter.notifyDataSetChanged();
-                        break;
-                    default:
-                        policeMenArrayAdapter.clear();
-                        policeMenArrayAdapter.addAll(policemenArrayList);
-                        policeMenArrayAdapter.notifyDataSetChanged();
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
+        setupSpinners();
     }
 
     public void init() {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
-        policeStationsSpinner = findViewById(R.id.policeStationsSpinner);
-        policeMenSpinner = findViewById(R.id.policeMenSpinner);
         anonymousCB = findViewById(R.id.anonymousCB);
         policeRatingBar = findViewById(R.id.policeRatingBar);
         descriptionET = findViewById(R.id.descriptionET);
@@ -91,34 +61,12 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
 
         mDatabase = FirebaseDatabase.getInstance();
         mFeedbackRef = mDatabase.getReference("feedback");
-
-        policeStationsArrayList = new ArrayList<String>();
-        policemenArrayList = new ArrayList<String>();
-        policeStationsArrayList.add("Old City");
-        policeStationsArrayList.add("Karelibag");
-        policeStationsArrayList.add("Manjalpur");
-        policeStationsArrayList.add("Gotri");
-        policeStationsArrayList.add("Sayajigunj");
+        policemenArrayList = new ArrayList<>();
 
         policemenArrayList.add("Bajirao Singham");
         policemenArrayList.add("Jaykant sikhre");
         policemenArrayList.add("Constable Patil");
         policemenArrayList.add("Hawaldar Gokhle");
-
-
-        ManjalpurPoliceMen = new ArrayList<>();
-        ManjalpurPoliceMen.add("Policewala kaka");
-
-        oldCityPoliceMen = new ArrayList<>();
-        oldCityPoliceMen.add("S.P.Shinchan");
-        oldCityPoliceMen.add("Officer Jenny");
-
-        policeStationsAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, policeStationsArrayList);
-        policeStationsSpinner.setAdapter(policeStationsAdapter);
-
-        policeMenArrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, policemenArrayList);
-        policeMenSpinner.setAdapter(policeMenArrayAdapter);
-
     }
 
     @Override
@@ -174,5 +122,20 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
     public boolean onSupportNavigateUp() {
         finish();
         return super.onSupportNavigateUp();
+    }
+
+    public void setupSpinners() {
+        SpinnerData spinnerData = new SpinnerData();
+
+        policeStationsSpinner = findViewById(R.id.policeStationsSpinner);
+        policeStationsArrayList = spinnerData.getStationList();
+        policeStationsAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, policeStationsArrayList);
+        policeStationsSpinner.setAdapter(policeStationsAdapter);
+
+        policeMenArrayAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, policemenArrayList);
+        policeMenSpinner = findViewById(R.id.policeMenSpinner);
+        policeMenSpinner.setAdapter(policeMenArrayAdapter);
+
+
     }
 }
