@@ -39,5 +39,13 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.6'
 
     implementation 'com.firebaseui:firebase-ui-database:4.3.1'
+
+    implementation('com.google.firebase:firebase-storage:16.0.5') {
+        exclude group: 'com.android.support'
+    }
+
+    implementation ("com.github.bumptech.glide:glide:4.9.0") {
+        exclude group: "com.android.support"
+    }
 }
 apply plugin: 'com.google.gms.google-services'
