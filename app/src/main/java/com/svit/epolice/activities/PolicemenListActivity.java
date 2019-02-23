@@ -48,7 +48,7 @@ public class PolicemenListActivity extends AppCompatActivity {
                         .setQuery(policeListQuery, Policeman.class)
                         .build();
 
-        mPolicemanAdapter = new PolicemanAdapter(options) {
+        mPolicemanAdapter = new PolicemanAdapter(options,getApplicationContext()) {
             @Override
             public void onDataChanged() {
                 super.onDataChanged();
