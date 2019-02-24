@@ -3,26 +3,29 @@ package com.svit.epolice.Models;
 import java.util.Arrays;
 
 public class Complaint {
-    private String[] media;
+    private String media;
     private String area, address, description;
-    private boolean isAnonymous;
+    private String username;
+
+
 
     public Complaint() {
     }
 
-    public Complaint(String[] media, String area, String address, String description, boolean isAnonymous) {
+    public Complaint(String media, String area, String address, String description,String username) {
         this.media = media;
         this.area = area;
         this.address = address;
         this.description = description;
-        this.isAnonymous = isAnonymous;
+        this.username = username;
     }
 
-    public String[] getMedia() {
+    public String getMedia() {
         return media;
     }
 
-    public void setMedia(String[] media) {
+
+    public void setMedia(String media) {
         this.media = media;
     }
 
@@ -50,22 +53,20 @@ public class Complaint {
         this.description = description;
     }
 
-    public boolean isAnonymous() {
-        return isAnonymous;
-    }
+    public String getUsername() { return username; }
 
-    public void setAnonymous(boolean anonymous) {
-        isAnonymous = anonymous;
-    }
+    public void setUsername(String username) { this.username = username; }
+
+
 
     @Override
     public String toString() {
         return "Complaint{" +
-                "media=" + Arrays.toString(media) +
+                "media=" + media + '\'' +
                 ", area='" + area + '\'' +
                 ", address='" + address + '\'' +
                 ", description='" + description + '\'' +
-                ", isAnonymous=" + isAnonymous +
+                ", username=" + username +
                 '}';
     }
 }

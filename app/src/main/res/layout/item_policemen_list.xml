@@ -98,7 +98,7 @@
             <TextView
                 android:id="@+id/policemanEmailTV"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="tai.arafat.at@gmail.com"
@@ -109,10 +109,12 @@
                 android:id="@+id/emailIconIV"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="2dp"
                 android:src="@drawable/round_email_black_18"
                 app:layout_constraintEnd_toStartOf="@+id/policemanEmailTV"
+                app:layout_constraintStart_toEndOf="@+id/policemanPhoneTV"
                 app:layout_constraintTop_toBottomOf="@+id/policemanAreaTV" />
 
             <TextView
