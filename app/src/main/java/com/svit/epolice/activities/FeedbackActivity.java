@@ -3,7 +3,6 @@ package com.svit.epolice.activities;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,16 +37,15 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
     Spinner policeStationsSpinner, policeMenSpinner;
     ArrayAdapter policeStationsAdapter;
     ArrayAdapter policeMenArrayAdapter;
-    ArrayList<String> ManjalpurPoliceMen;
-    ArrayList<String> oldCityPoliceMen;
     String policemanID;
     CheckBox anonymousCB;
     FirebaseDatabase mDatabase;
-    DatabaseReference mFeedbackRef, mPolicemenRef;
+    DatabaseReference mFeedbacksRef, mPolicemenRef;
     RatingBar policeRatingBar;
     EditText descriptionET;
     Button submitBTN;
     ProgressBar mProgressBar;
+    ArrayList<String> policemanIDs = new ArrayList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +66,7 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
         mProgressBar = findViewById(R.id.feedbackPB);
 
         mDatabase = FirebaseDatabase.getInstance();
-        mFeedbackRef = mDatabase.getReference("feedback");
+        mFeedbacksRef = mDatabase.getReference("feedbacks");
         mPolicemenRef = mDatabase.getReference("policemen");
         policemenArrayList = new ArrayList<>();
 
@@ -92,7 +90,7 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
                         policeRatingBar.getRating() + "",
                         descriptionET.getText().toString(),
                         username,
-                        "ID HUN ME"
+                        policemanID
                 );
                 sendFeedback(feedback);
                 break;
@@ -100,8 +98,8 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void sendFeedback(Feedback feedback) {
-        String key = mFeedbackRef.push().getKey();
-        mFeedbackRef.child(key).setValue(feedback)
+        String key = mFeedbacksRef.push().getKey();
+        mFeedbacksRef.child(feedback.getPolicemanID()).child(key).setValue(feedback)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -146,9 +144,10 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         policemenArrayList.clear();
+                        policemanIDs.clear();
                         for(DataSnapshot singleSnapshot: dataSnapshot.getChildren()){
                             Policeman policemanobj = singleSnapshot.getValue(Policeman.class);
-                            policemanID = singleSnapshot.getKey();
+                            policemanIDs.add(singleSnapshot.getKey());
                             policemenArrayList.add(policemanobj.getName());
                         }
                             policeMenArrayAdapter.notifyDataSetChanged();
@@ -168,8 +167,17 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
         });
 
         policeMenSpinner = findViewById(R.id.policeMenSpinner);
+        policeMenSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                policemanID = policemanIDs.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         policeMenSpinner.setAdapter(policeMenArrayAdapter);
-
-
     }
 }
