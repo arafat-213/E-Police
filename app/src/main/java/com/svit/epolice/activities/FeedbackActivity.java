@@ -3,7 +3,9 @@ package com.svit.epolice.activities;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,9 +18,14 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.svit.epolice.Models.Feedback;
+import com.svit.epolice.Models.Policeman;
 import com.svit.epolice.R;
 import com.svit.epolice.utilities.SpinnerData;
 
@@ -33,9 +40,10 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
     ArrayAdapter policeMenArrayAdapter;
     ArrayList<String> ManjalpurPoliceMen;
     ArrayList<String> oldCityPoliceMen;
+    String policemanID;
     CheckBox anonymousCB;
     FirebaseDatabase mDatabase;
-    DatabaseReference mFeedbackRef;
+    DatabaseReference mFeedbackRef, mPolicemenRef;
     RatingBar policeRatingBar;
     EditText descriptionET;
     Button submitBTN;
@@ -61,12 +69,9 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
 
         mDatabase = FirebaseDatabase.getInstance();
         mFeedbackRef = mDatabase.getReference("feedback");
+        mPolicemenRef = mDatabase.getReference("policemen");
         policemenArrayList = new ArrayList<>();
 
-        policemenArrayList.add("Bajirao Singham");
-        policemenArrayList.add("Jaykant sikhre");
-        policemenArrayList.add("Constable Patil");
-        policemenArrayList.add("Hawaldar Gokhle");
     }
 
     @Override
@@ -86,7 +91,8 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
                         policeMenSpinner.getSelectedItem().toString(),
                         policeRatingBar.getRating() + "",
                         descriptionET.getText().toString(),
-                        username
+                        username,
+                        "ID HUN ME"
                 );
                 sendFeedback(feedback);
                 break;
@@ -131,8 +137,36 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
         policeStationsArrayList = spinnerData.getStationList();
         policeStationsAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, policeStationsArrayList);
         policeStationsSpinner.setAdapter(policeStationsAdapter);
-
         policeMenArrayAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, policemenArrayList);
+        policeStationsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Query query = mPolicemenRef.orderByChild("area").equalTo(policeStationsSpinner.getSelectedItem().toString());
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        policemenArrayList.clear();
+                        for(DataSnapshot singleSnapshot: dataSnapshot.getChildren()){
+                            Policeman policemanobj = singleSnapshot.getValue(Policeman.class);
+                            policemanID = singleSnapshot.getKey();
+                            policemenArrayList.add(policemanobj.getName());
+                        }
+                            policeMenArrayAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         policeMenSpinner = findViewById(R.id.policeMenSpinner);
         policeMenSpinner.setAdapter(policeMenArrayAdapter);
 

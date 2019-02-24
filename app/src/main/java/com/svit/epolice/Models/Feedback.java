@@ -6,26 +6,21 @@ public class Feedback {
     private String rating;
     private String description;
     private String userName;
+    private  String policemanID;
 
-    public Feedback() {
-    }
 
-    public Feedback(String policeStation, String policeOfficer, String rating, String description, String userName) {
+
+    public Feedback(String policeStation, String policeOfficer, String rating, String description, String userName, String policemanID) {
         this.policeStation = policeStation;
         this.policeOfficer = policeOfficer;
         this.rating = rating;
         this.description = description;
-        // When anonymous == false
         this.userName = userName;
+        this.policemanID = policemanID;
     }
 
-    public Feedback(String policeStation, String policeOfficer, String rating, String description) {
-        this.policeStation = policeStation;
-        this.policeOfficer = policeOfficer;
-        this.rating = rating;
-        this.description = description;
-        // When anonymous == true
-    }
+    public Feedback() { }
+
 
     public String getPoliceStation() {
         return policeStation;
@@ -67,14 +62,20 @@ public class Feedback {
         this.userName = userName;
     }
 
+    public String getPolicemanID() { return policemanID; }
+
+    public void setPolicemanID(String policemanID) { this.policemanID = policemanID; }
+
     @Override
     public String toString() {
         return "Feedback{" +
                 "policeStation='" + policeStation + '\'' +
                 ", policeOfficer='" + policeOfficer + '\'' +
-                ", rating=" + rating +
+                ", rating='" + rating + '\'' +
                 ", description='" + description + '\'' +
                 ", userName='" + userName + '\'' +
+                ", policemanID='" + policemanID + '\'' +
                 '}';
     }
+
 }
