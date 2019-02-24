@@ -16,4 +16,9 @@
     <string name="police_officer">Police officer</string>
     <string name="new_user_sign_up_here">New user? Sign up here</string>
     <string name="hint_area">Area</string>
+    <string name="label_police_station">Police station</string>
+    <string name="label_police_man">Police man</string>
+    <string name="hint_stay_anonymous">Stay anonymous?</string>
+    <string name="btn_submit">submit</string>
+    <string name="hint_enter_description_here">Enter description here</string>
 </resources>
