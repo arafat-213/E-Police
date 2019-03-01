@@ -181,11 +181,13 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
                     phoneNoET.setText(user.getMobileNumber());
                     dobET.setText(user.getDob());
                     aadharNoET.setText(user.getAadhar_no());
+                    mImageUri = Uri.parse(user.getProfile_pic_url());
                     Glide.with(getApplicationContext())
-                            .load(user.getProfile_pic_url())
+                            .load(mImageUri)
                             .circleCrop()
                             .into(profilePicIV);
                 }
+                mProgressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -193,7 +195,6 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
 
             }
         });
-        mProgressBar.setVisibility(View.INVISIBLE);
     }
 
     public void uploadImage(final User user) {
@@ -213,6 +214,8 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
                             });
                         }
                     });
+        } else {
+            addUser(user);
         }
     }
 }
