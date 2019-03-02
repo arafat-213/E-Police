@@ -7,7 +7,7 @@
     tools:context=".activities.UserRegistrationActivity">
 
     <ProgressBar
-        android:id="@+id/progressbar"
+        android:id="@+id/requestPB"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

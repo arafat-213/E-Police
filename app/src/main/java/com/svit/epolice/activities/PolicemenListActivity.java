@@ -4,45 +4,61 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.svit.epolice.Models.Policeman;
 import com.svit.epolice.R;
 import com.svit.epolice.adapters.PolicemanAdapter;
 
-import java.util.ArrayList;
-
 public class PolicemenListActivity extends AppCompatActivity {
 
     private RecyclerView policeRecyclerView;
-    private ArrayList<Policeman> policemanArrayList;
-    private Policeman policeman;
+    private PolicemanAdapter mPolicemanAdapter;
+    ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_policemen_list);
+        init();
+    }
+
+    public void init() {
         policeRecyclerView = findViewById(R.id.policeRecyclerView);
-        policemanArrayList = new ArrayList<Policeman>();
+        mProgressBar = findViewById(R.id.policemenListPB);
+        mProgressBar.setVisibility(View.VISIBLE);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
-        for (int i = 0; i < 20; i++) {
-            policeman = new Policeman();
-            policeman.setImage_id(R.drawable.jack);
-            policeman.setName("Jack Ryan");
-            policeman.setRank("Commissioner of police");
-            policeman.setArea("Vadodara city");
-            policeman.setEmail("jack@amazon.in");
-            policeman.setMobile_no("9876543210");
-            policeman.setRating(3.7f);
-            policemanArrayList.add(policeman);
-        }
 
+        FirebaseApp.initializeApp(this);
+
+        Query policeListQuery = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("policemen");
+
+        FirebaseRecyclerOptions<Policeman> options =
+                new FirebaseRecyclerOptions.Builder<Policeman>()
+                        .setQuery(policeListQuery, Policeman.class)
+                        .build();
+
+        mPolicemanAdapter = new PolicemanAdapter(options,getApplicationContext()) {
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
+        };
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        ((LinearLayoutManager) layoutManager).setReverseLayout(true);
         policeRecyclerView.setLayoutManager(layoutManager);
-
-        PolicemanAdapter policemanAdapter = new PolicemanAdapter(policemanArrayList);
-        policeRecyclerView.setAdapter(policemanAdapter);
+        policeRecyclerView.setAdapter(mPolicemanAdapter);
     }
 
     @Override
@@ -55,6 +71,18 @@ public class PolicemenListActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         finish();
         return super.onSupportNavigateUp();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mPolicemanAdapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mPolicemanAdapter.stopListening();
     }
 }
 

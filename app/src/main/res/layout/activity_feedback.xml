@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,24 +10,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Police station" />
+        android:text="@string/label_police_station" />
 
     <Spinner
         android:id="@+id/policeStationsSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"></Spinner>
+        android:layout_margin="8dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Police man" />
+        android:text="@string/label_police_man" />
 
     <Spinner
         android:id="@+id/policeMenSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"></Spinner>
+        android:layout_margin="8dp" />
 
     <RatingBar
         style="?android:attr/ratingBarStyleIndicator"
@@ -42,18 +41,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="Enter description here"
+        android:hint="@string/hint_enter_description_here"
         android:lines="5" />
 
     <CheckBox
         android:id="@+id/checkboxAnonymous"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stay anonymous?" />
+        android:text="@string/hint_stay_anonymous" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="submit" />
+        android:text="@string/btn_submit" />
 </LinearLayout>
