@@ -12,8 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,6 +49,7 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
     StorageReference mStorageRef;
     StorageTask mUploadTask;
     private Uri mImageUri;
+    String oldImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +61,13 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
         mUserRef = mDatabase.getReference("users");
-        mStorageRef = FirebaseStorage.getInstance().getReference().child("notifications/");
+        mStorageRef = FirebaseStorage.getInstance().getReference().child("users/");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
 
-        loadUserProfile();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        loadUserProfile();
 
     }
 
@@ -116,8 +119,8 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
 
                 String aadharNo = aadharNoET.getText().toString();
                 String dob = dobET.getText().toString();
-                String profilePic = "Not implemented yet";
-                User user = new User(name, phone, email, profilePic, aadharNo, dob);
+                // String profilePic = mImageUri.toString();
+                User user = new User(name, phone, email, oldImage, aadharNo, dob);
                 uploadImage(user);
                 break;
 
@@ -129,13 +132,27 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
     }
 
     public void addUser(User user) {
-        mUserRef.child(mFirebaseUser.getUid()).setValue(user);
-        Intent intent = new Intent(
-                ProfileDetailsActivity.this,
-                DashboardActivity.class
-        );
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+        mUserRef.child(mFirebaseUser.getUid()).setValue(user)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Intent intent = new Intent(
+                                    ProfileDetailsActivity.this,
+                                    DashboardActivity.class
+                            );
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(
+                                    getApplicationContext(),
+                                    "Something went wrong",
+                                    Toast.LENGTH_SHORT
+                            ).show();
+                        }
+                    }
+                });
+
     }
 
     private void openFileChooser() {
@@ -167,7 +184,7 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
         mProgressBar.setVisibility(View.VISIBLE);
         Query query1 = mUserRef
                 .orderByKey()
-                .equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                .equalTo(mFirebaseUser.getUid());
 
         query1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -181,9 +198,10 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
                     phoneNoET.setText(user.getMobileNumber());
                     dobET.setText(user.getDob());
                     aadharNoET.setText(user.getAadhar_no());
-                    mImageUri = Uri.parse(user.getProfile_pic_url());
+                    oldImage = user.getProfile_pic_url();
+                    // mImageUri = Uri.parse(user.getProfile_pic_url());
                     Glide.with(getApplicationContext())
-                            .load(mImageUri)
+                            .load(user.getProfile_pic_url())
                             .circleCrop()
                             .into(profilePicIV);
                 }
