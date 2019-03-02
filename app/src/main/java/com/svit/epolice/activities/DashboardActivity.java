@@ -36,7 +36,7 @@ public class DashboardActivity extends AppCompatActivity {
         arrayList.add(new DashboardModule("Nearby stations", R.drawable.icon_police_station));
         arrayList.add(new DashboardModule("Request patrolling", R.drawable.icon_request));
         arrayList.add(new DashboardModule("Notifications", R.drawable.icon_notification));
-        arrayList.add(new DashboardModule("Give feedback", R.drawable.feedback));
+        arrayList.add(new DashboardModule("Give activity_feedback", R.drawable.feedback));
         arrayList.add(new DashboardModule("Connect with us", R.drawable.icon_connect));
 //        for (int i = 0; i < 4; i++) {
 //            dashboardModule = new DashboardModule();

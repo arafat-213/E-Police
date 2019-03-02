@@ -42,7 +42,7 @@ public class NotificationActivity extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<Notification>()
                         .setQuery(notificationRef, Notification.class)
                         .build();
-        notificationAdapter = new NotificationAdapter(options);
+        notificationAdapter = new NotificationAdapter(options, getApplicationContext());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(notificationAdapter);
