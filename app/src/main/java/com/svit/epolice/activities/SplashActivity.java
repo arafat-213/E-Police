@@ -47,7 +47,7 @@ public class SplashActivity extends AwesomeSplash {
 //        configSplash.setPathSplashFillColor(R.color.lightGrey); //path object filling color
 
         //Customize Title
-        configSplash.setTitleSplash("Vadodara police");
+        configSplash.setTitleSplash("E-police");
         configSplash.setTitleTextColor(R.color.lightGrey);
         configSplash.setTitleTextSize(30f); //float value
         configSplash.setAnimTitleDuration(3000);
