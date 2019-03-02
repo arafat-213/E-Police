@@ -49,7 +49,7 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.feedback);
+        setContentView(R.layout.activity_feedback);
 
         init();
         setupSpinners();
@@ -114,7 +114,7 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
                         } else {
                             Toast.makeText(
                                     getApplicationContext(),
-                                    "Failed to send feedback",
+                                    "Failed to send activity_feedback",
                                     Toast.LENGTH_SHORT
                             ).show();
                         }

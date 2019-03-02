@@ -9,17 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.svit.epolice.Models.Notification;
 import com.svit.epolice.R;
 
-import java.util.ArrayList;
-
 public class NotificationAdapter extends FirebaseRecyclerAdapter<Notification, NotificationAdapter.NotificationViewHolder> {
 
-    private ArrayList<Notification> notificationArrayList;
-    private Context context;
+    private Context mContext;
 
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
@@ -27,8 +25,9 @@ public class NotificationAdapter extends FirebaseRecyclerAdapter<Notification, N
      *
      * @param options
      */
-    public NotificationAdapter(@NonNull FirebaseRecyclerOptions<Notification> options) {
+    public NotificationAdapter(@NonNull FirebaseRecyclerOptions<Notification> options, Context context) {
         super(options);
+        this.mContext = context;
     }
 
 
@@ -46,6 +45,11 @@ public class NotificationAdapter extends FirebaseRecyclerAdapter<Notification, N
         notificationViewHolder.notifyType.setText(model.getNotificationType());
         notificationViewHolder.notifyContent.setText(model.getNotificationContent());
         // notificationViewHolder.notifyImage.setImageResource(notificationArrayList.get(i).getNotificationImage());
+        Glide.with(mContext)
+                .load(model.getNotificationImage())
+                .circleCrop()
+                .into(notificationViewHolder.notifyImage);
+
     }
 
 

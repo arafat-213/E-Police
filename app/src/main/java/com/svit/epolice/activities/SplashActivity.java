@@ -87,13 +87,13 @@ public class SplashActivity extends AwesomeSplash {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseAuth.getInstance().addAuthStateListener(mAuthListener);
+        mFirebaseAuth.addAuthStateListener(mAuthListener);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         if (mAuthListener != null)
-            FirebaseAuth.getInstance().removeAuthStateListener(mAuthListener);
+            mFirebaseAuth.removeAuthStateListener(mAuthListener);
     }
 }

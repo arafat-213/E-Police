@@ -1,6 +1,5 @@
 package com.svit.epolice.activities;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -19,13 +18,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.svit.epolice.Models.PatrollingRequest;
 import com.svit.epolice.R;
+import com.svit.epolice.utilities.DateRangePickerDialog;
 import com.svit.epolice.utilities.SpinnerData;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
-public class RequestPatrollingActivity extends AppCompatActivity implements View.OnClickListener {
+public class RequestPatrollingActivity extends AppCompatActivity implements View.OnClickListener, DateRangePickerDialog.OnInputListener {
 
-    DatePickerDialog fromDatePickerDialog, toDatePickerDialog;
     TextView fromDateTV, toDateTV;
     private Spinner areaSpinner;
     private ArrayList<String> policeStationsArrayList;
@@ -36,11 +37,15 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
     EditText phoneET;
     EditText addressET;
     DatabaseReference mRequestsRef;
+    private static final String PATTERN = "dd-MM-yyyy";
+    Calendar mStartDate, mEndDate;
+    String fromDate;
+    String toDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.request_patrolling);
+        setContentView(R.layout.activity_request_patrolling);
         init();
         setupSpinner();
     }
@@ -51,7 +56,10 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
         submitBTN = findViewById(R.id.requestSubmitBTN);
         submitBTN.setOnClickListener(this);
         fromDateTV = findViewById(R.id.requestFromDateTV);
+        fromDateTV.setText(new SimpleDateFormat(PATTERN).format(Calendar.getInstance().getTime()));
+        fromDateTV.setOnClickListener(this);
         toDateTV = findViewById(R.id.requestToDateTV);
+        toDateTV.setOnClickListener(this);
         nameET = findViewById(R.id.requestNameET);
         phoneET = findViewById(R.id.requestPhoneET);
         addressET = findViewById(R.id.requestAddressET);
@@ -69,8 +77,7 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
         switch (view.getId()) {
             case R.id.requestSubmitBTN:
                 mProgressBar.setVisibility(View.VISIBLE);
-                String fromDate = "13/02/2018";
-                String toDate = "16/02/2018";
+
                 String name;
                 String phone;
                 String area = areaSpinner.getSelectedItem().toString();
@@ -84,6 +91,12 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
                         fromDate, toDate, name, address, phone, area
                 );
                 submitRequest(request);
+                break;
+            case R.id.requestFromDateTV:
+                showDateRangePicker();
+                break;
+            case R.id.requestToDateTV:
+                showDateRangePicker();
                 break;
         }
     }
@@ -121,5 +134,21 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
                 policeStationsArrayList
         );
         areaSpinner.setAdapter(stationsAdapter);
+    }
+
+    public void showDateRangePicker() {
+        DateRangePickerDialog dialog = new DateRangePickerDialog();
+        dialog.show(getSupportFragmentManager(), TAG);
+    }
+
+
+    @Override
+    public void sendInput(Calendar startDate, Calendar endDate) {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(PATTERN);
+        mStartDate = startDate;
+        mEndDate = endDate;
+        fromDateTV.setText(simpleDateFormat.format(startDate.getTime()));
+        toDateTV.setText(simpleDateFormat.format(endDate.getTime()));
     }
 }
