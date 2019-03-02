@@ -9,19 +9,28 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.svit.epolice.Models.Notification;
 import com.svit.epolice.R;
 
 import java.util.ArrayList;
 
-public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder> {
+public class NotificationAdapter extends FirebaseRecyclerAdapter<Notification, NotificationAdapter.NotificationViewHolder> {
 
     private ArrayList<Notification> notificationArrayList;
     private Context context;
 
-    public NotificationAdapter(ArrayList<Notification> policemanArrayList) {
-        this.notificationArrayList = policemanArrayList;
+    /**
+     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
+     * {@link FirebaseRecyclerOptions} for configuration options.
+     *
+     * @param options
+     */
+    public NotificationAdapter(@NonNull FirebaseRecyclerOptions<Notification> options) {
+        super(options);
     }
+
 
     @NonNull
     @Override
@@ -31,28 +40,26 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return new NotificationViewHolder(view);
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull NotificationViewHolder notificationViewHolder, int i) {
-        notificationViewHolder.notifyType.setText(notificationArrayList.get(i).getNotificationType());
-        notificationViewHolder.notifyConent.setText(notificationArrayList.get(i).getNotificationContent());
+    protected void onBindViewHolder(@NonNull NotificationViewHolder notificationViewHolder, int position, @NonNull Notification model) {
+        notificationViewHolder.notifyType.setText(model.getNotificationType());
+        notificationViewHolder.notifyContent.setText(model.getNotificationContent());
         // notificationViewHolder.notifyImage.setImageResource(notificationArrayList.get(i).getNotificationImage());
     }
 
-    @Override
-    public int getItemCount() {
-        return notificationArrayList.size();
-    }
+
 
     class NotificationViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView notifyImage;
-        public TextView notifyType, notifyConent;
+        public TextView notifyType, notifyContent;
 
         public NotificationViewHolder(@NonNull View itemView) {
             super(itemView);
             notifyImage = itemView.findViewById(R.id.notifyIV);
             notifyType = itemView.findViewById(R.id.notifyTypeTV);
-            notifyConent = itemView.findViewById(R.id.notifyContentTV);
+            notifyContent = itemView.findViewById(R.id.notifyContentTV);
 
         }
     }
