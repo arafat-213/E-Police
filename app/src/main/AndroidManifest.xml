@@ -21,19 +21,29 @@
         </activity>
         <activity android:name=".activities.DashboardActivity">
         </activity>
-        <activity android:name=".activities.PolicemenListActivity">
+        <activity
+            android:name=".activities.PolicemenListActivity"
+            android:label="@string/label_police_man">
         </activity>
-        <activity android:name=".activities.FeedbackActivity">
+        <activity
+            android:name=".activities.FeedbackActivity"
+            android:label="@string/lable_feedback_activity">
         </activity>
         <activity android:name=".activities.TwitterActivity" />
-        <activity android:name=".activities.RequestPatrollingActivity" />
-        <activity android:name=".activities.ComplaintActivity" />
+        <activity
+            android:name=".activities.RequestPatrollingActivity"
+            android:label="@string/lable_patrolling_request_activity" />
+        <activity
+            android:name=".activities.ComplaintActivity"
+            android:label="@string/lable_complaint_activity" />
         <activity android:name=".activities.UserRegistrationActivity">
         </activity>
         <activity android:name=".activities.SignInActivity">
         </activity>
         <activity android:name=".activities.ProfileDetailsActivity" />
-        <activity android:name=".activities.NotificationActivity"></activity>
+        <activity
+            android:name=".activities.NotificationActivity"
+            android:label="@string/lable_notification_activity"></activity>
     </application>
 
 </manifest>
