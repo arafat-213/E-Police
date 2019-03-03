@@ -22,4 +22,9 @@
     <string name="btn_submit">submit</string>
     <string name="hint_enter_description_here">Enter description here</string>
     <string name="btn_label_continue">Continue</string>
+    <string name="lable_policemen_list_activity">Policemen List</string>
+    <string name="lable_complaint_activity">Complaints</string>
+    <string name="lable_patrolling_request_activity">Request Patrolling</string>
+    <string name="lable_notification_activity">Notifications</string>
+    <string name="lable_feedback_activity">Feedbacks</string>
 </resources>

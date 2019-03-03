@@ -38,9 +38,8 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
     EditText addressET;
     DatabaseReference mRequestsRef;
     private static final String PATTERN = "dd-MM-yyyy";
-    Calendar mStartDate, mEndDate;
-    String fromDate;
-    String toDate;
+    String mFromDate;
+    String mToDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +87,7 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
                 address = phoneET.getText().toString();
 
                 PatrollingRequest request = new PatrollingRequest(
-                        fromDate, toDate, name, address, phone, area
+                        mFromDate, mToDate, name, address, phone, area
                 );
                 submitRequest(request);
                 break;
@@ -146,9 +145,10 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
     public void sendInput(Calendar startDate, Calendar endDate) {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(PATTERN);
-        mStartDate = startDate;
-        mEndDate = endDate;
-        fromDateTV.setText(simpleDateFormat.format(startDate.getTime()));
-        toDateTV.setText(simpleDateFormat.format(endDate.getTime()));
+        mFromDate = simpleDateFormat.format(startDate.getTime());
+        fromDateTV.setText(mFromDate);
+
+        mToDate = simpleDateFormat.format(endDate.getTime());
+        toDateTV.setText(mToDate);
     }
 }

@@ -57,7 +57,6 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
                         view.getContext().startActivity(intent);
                         break;
                     case 1:
-//                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
                         intent = new Intent(view.getContext(), ComplaintActivity.class);
                         view.getContext().startActivity(intent);
                         break;
@@ -69,12 +68,8 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
                     case 3:
                         intent = new Intent(view.getContext(), RequestPatrollingActivity.class);
                         view.getContext().startActivity(intent);
-                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
-//                        intent = new Intent(view.getContext(), PolicemenListActivity.class);
-//                        view.getContext().startActivity(intent);
                         break;
                     case 4:
-                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
                         intent = new Intent(view.getContext(), NotificationActivity.class);
                         view.getContext().startActivity(intent);
                         break;
@@ -83,11 +78,9 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
                         mContext.startActivity(intent);
                         break;
                     case 6:
-//                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
                         intent = new Intent(view.getContext(), TwitterActivity.class);
                         view.getContext().startActivity(intent);
                         break;
-//<a class="twitter-timeline" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 }
             }
         });
