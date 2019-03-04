@@ -1,6 +1,7 @@
 package com.svit.epolice.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -46,7 +47,10 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
     EditText descriptionET;
     Button submitBTN;
     ProgressBar mProgressBar;
+    private static final String TAG = "FeedbackActivity";
+    long count;
     ArrayList<String> policemanIDs = new ArrayList();
+    float rating = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +115,8 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
                                     "Feedback sent",
                                     Toast.LENGTH_SHORT
                             ).show();
-                            finish();
+                            avgrating();
+//                            finish();
                         } else {
                             Toast.makeText(
                                     getApplicationContext(),
@@ -180,5 +185,43 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
             }
         });
         policeMenSpinner.setAdapter(policeMenArrayAdapter);
+    }
+
+
+    public void avgrating() {
+        Query query = mFeedbacksRef.child(policemanID);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                rating = 0;
+                count = dataSnapshot.getChildrenCount();
+                Log.d(TAG, "onDataChange: count: " + count);
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    rating = rating + Float.parseFloat(singleSnapshot.getValue(Feedback.class).getRating());
+                }
+                rating = rating / count;
+                rating = (float) (Math.round(rating * 100.0) / 100.0);
+                Log.e(TAG, "onDataChange: avg rating: " + rating);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onDataChange: added to database");
+                FirebaseDatabase.getInstance().getReference("policemen").child(policemanID).child("rating").setValue(rating + "");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }
