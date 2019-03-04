@@ -95,7 +95,8 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
                         policeRatingBar.getRating() + "",
                         descriptionET.getText().toString(),
                         username,
-                        policemanID
+                        policemanID,
+                        System.currentTimeMillis()
                 );
                 sendFeedback(feedback);
                 break;
