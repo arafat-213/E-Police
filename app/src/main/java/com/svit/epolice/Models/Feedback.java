@@ -7,20 +7,21 @@ public class Feedback {
     private String description;
     private String userName;
     private  String policemanID;
+    private long timestamp;
 
 
+    public Feedback() {
+    }
 
-    public Feedback(String policeStation, String policeOfficer, String rating, String description, String userName, String policemanID) {
+    public Feedback(String policeStation, String policeOfficer, String rating, String description, String userName, String policemanID, long timestamp) {
         this.policeStation = policeStation;
         this.policeOfficer = policeOfficer;
         this.rating = rating;
         this.description = description;
         this.userName = userName;
         this.policemanID = policemanID;
+        this.timestamp = timestamp;
     }
-
-    public Feedback() { }
-
 
     public String getPoliceStation() {
         return policeStation;
@@ -66,6 +67,14 @@ public class Feedback {
 
     public void setPolicemanID(String policemanID) { this.policemanID = policemanID; }
 
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
     @Override
     public String toString() {
         return "Feedback{" +
@@ -75,7 +84,7 @@ public class Feedback {
                 ", description='" + description + '\'' +
                 ", userName='" + userName + '\'' +
                 ", policemanID='" + policemanID + '\'' +
+                ", timestamp=" + timestamp +
                 '}';
     }
-
 }
