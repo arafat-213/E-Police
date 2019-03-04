@@ -1,7 +1,6 @@
 package com.svit.epolice.activities;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -11,6 +10,8 @@ import com.svit.epolice.R;
 import com.viksaa.sssplash.lib.activity.AwesomeSplash;
 import com.viksaa.sssplash.lib.cnst.Flags;
 import com.viksaa.sssplash.lib.model.ConfigSplash;
+
+import androidx.annotation.NonNull;
 
 
 public class SplashActivity extends AwesomeSplash {
