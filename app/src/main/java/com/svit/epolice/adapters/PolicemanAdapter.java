@@ -50,6 +50,7 @@ public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, Policem
         policemanViewHolder.policemanArea.setText(model.getArea());
         policemanViewHolder.policemanPhone.setText(model.getMobile_no());
         policemanViewHolder.policemanEmail.setText(model.getEmail());
+        policemanViewHolder.policemanRatingTV.setText(model.getRating() + " ★");
        // policemanViewHolder.policemanRatingTV.setText(model.getRating() + " ★");
 //        policemanViewHolder.policemanRating.setRating(model.getRating());
 

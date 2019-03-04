@@ -3,13 +3,13 @@ package com.svit.epolice.Models;
 public class Policeman {
     String image_id;
     String name;
-    float rating;
+    String rating;
     String mobile_no;
     String email;
     String rank;
     String area;
 
-    public Policeman(String image_id, String name, float rating, String mobile_no, String email, String rank, String area) {
+    public Policeman(String image_id, String name, String rating, String mobile_no, String email, String rank, String area) {
         this.image_id = image_id;
         this.name = name;
         this.rating = rating;
@@ -55,11 +55,11 @@ public class Policeman {
         this.name = name;
     }
 
-    public float getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
