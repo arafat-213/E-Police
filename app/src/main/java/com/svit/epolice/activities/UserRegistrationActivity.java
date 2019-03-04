@@ -2,8 +2,6 @@ package com.svit.epolice.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +19,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.svit.epolice.R;
 
 import java.util.regex.Pattern;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class UserRegistrationActivity extends AppCompatActivity {
 

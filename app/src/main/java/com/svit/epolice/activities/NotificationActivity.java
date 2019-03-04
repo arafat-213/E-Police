@@ -1,9 +1,6 @@
 package com.svit.epolice.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.FirebaseApp;
@@ -14,6 +11,10 @@ import com.svit.epolice.R;
 import com.svit.epolice.adapters.NotificationAdapter;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class NotificationActivity extends AppCompatActivity {
 

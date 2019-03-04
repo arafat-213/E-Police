@@ -1,8 +1,6 @@
 package com.svit.epolice.activities;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,6 +22,9 @@ import com.svit.epolice.utilities.SpinnerData;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class RequestPatrollingActivity extends AppCompatActivity implements View.OnClickListener, DateRangePickerDialog.OnInputListener {
 

@@ -3,8 +3,6 @@ package com.svit.epolice.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,6 +28,9 @@ import com.svit.epolice.R;
 import com.svit.epolice.utilities.SpinnerData;
 
 import java.util.ArrayList;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ComplaintActivity extends AppCompatActivity implements View.OnClickListener {
 
