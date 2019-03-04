@@ -54,7 +54,6 @@ public class NotificationAdapter extends FirebaseRecyclerAdapter<Notification, N
     }
 
 
-
     class NotificationViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView notifyImage;
