@@ -27,6 +27,7 @@
     <string name="lable_patrolling_request_activity">Request Patrolling</string>
     <string name="lable_notification_activity">Notifications</string>
     <string name="lable_feedback_activity">Feedbacks</string>
+    <string name="label_requestlist_activity">Request List</string>
     <string name="placeholder_startdate">Start date</string>
     <string name="placeholder_enddate">End date</string>
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</string>

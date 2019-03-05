@@ -1,15 +1,17 @@
 package com.svit.epolice.Models;
 
 public class PatrollingRequest {
-    private String fromDate, toDate, fullName, address, phoneNo, area;
+    private String fromDate, toDate, fullName, address, phoneNo, area, UId;
 
-    public PatrollingRequest(String fromDate, String toDate, String fullName, String address, String phoneNo, String area) {
+
+    public PatrollingRequest(String fromDate, String toDate, String fullName, String address, String phoneNo, String area, String UId) {
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.fullName = fullName;
         this.address = address;
         this.phoneNo = phoneNo;
         this.area = area;
+        this.UId = UId;
     }
 
     public PatrollingRequest() {
@@ -63,4 +65,8 @@ public class PatrollingRequest {
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
+
+    public String getUId() { return UId; }
+
+    public void setUId(String UId) { this.UId = UId; }
 }
