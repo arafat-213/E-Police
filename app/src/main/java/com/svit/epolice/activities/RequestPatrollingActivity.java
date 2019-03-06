@@ -1,7 +1,11 @@
 package com.svit.epolice.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -50,6 +54,7 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
     String mFromDate;
     String mToDate;
     FirebaseUser mCurrentUser;
+    String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +80,8 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
         mProgressBar = findViewById(R.id.requestPB);
         mProgressBar.setVisibility(View.VISIBLE);
         mRequestsRef = FirebaseDatabase.getInstance().getReference().child("requests");
+        mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+        userId = mCurrentUser.getUid();
     }
     @Override
     public boolean onSupportNavigateUp() {
@@ -95,10 +102,11 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
 
                 name = nameET.getText().toString();
                 phone = phoneET.getText().toString();
-                address = phoneET.getText().toString();
+                address = addressET.getText().toString();
 
+              //  Toast.makeText(this,userId,Toast.LENGTH_SHORT).show();
                 PatrollingRequest request = new PatrollingRequest(
-                        mFromDate, mToDate, name, address, phone, area
+                        mFromDate, mToDate, name, address, phone, area,userId
                 );
                 submitRequest(request);
                 break;
@@ -166,7 +174,7 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
     public void loadUserProfile() {
         // Loads user's name, phone number from database and stores it into widgets
         // mProgressBar.setVisibility(View.VISIBLE);
-        mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+       // mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (mCurrentUser != null) {
             Query query = FirebaseDatabase.getInstance().getReference()
                     .child("users")
@@ -189,5 +197,20 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
             });
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_request, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(RequestPatrollingActivity.this,RequestListActivity.class);
+        startActivity(intent);
+
+        return super.onOptionsItemSelected(item);
     }
 }
