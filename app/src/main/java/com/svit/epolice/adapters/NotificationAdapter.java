@@ -1,6 +1,7 @@
 package com.svit.epolice.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,12 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.svit.epolice.Models.Notification;
 import com.svit.epolice.R;
+import com.svit.epolice.activities.NotificationDetailsActivity;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 public class NotificationAdapter extends FirebaseRecyclerAdapter<Notification, NotificationAdapter.NotificationViewHolder> {
 
@@ -42,15 +46,26 @@ public class NotificationAdapter extends FirebaseRecyclerAdapter<Notification, N
 
 
     @Override
-    protected void onBindViewHolder(@NonNull NotificationViewHolder notificationViewHolder, int position, @NonNull Notification model) {
+    protected void onBindViewHolder(@NonNull NotificationViewHolder notificationViewHolder, int position, @NonNull final Notification model) {
         notificationViewHolder.notifyType.setText(model.getNotificationType());
         notificationViewHolder.notifyContent.setText(model.getNotificationContent());
         // notificationViewHolder.notifyImage.setImageResource(notificationArrayList.get(i).getNotificationImage());
         Glide.with(mContext)
                 .load(model.getNotificationImage())
+                .thumbnail(0.25f)
+                .transition(withCrossFade())
                 .circleCrop()
                 .into(notificationViewHolder.notifyImage);
 
+        notificationViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, NotificationDetailsActivity.class);
+                intent.putExtra("Notification", model);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
 

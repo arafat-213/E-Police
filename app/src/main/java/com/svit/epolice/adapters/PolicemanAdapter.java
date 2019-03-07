@@ -44,13 +44,18 @@ public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, Policem
     @Override
     protected void onBindViewHolder(@NonNull PolicemanViewHolder policemanViewHolder, int position, @NonNull Policeman model) {
         //policemanViewHolder.policemanImage.setImageResource(model.getImage_id());
-        Glide.with(context).load(model.getImage_id()).circleCrop().into(policemanViewHolder.policemanImage);
+
         policemanViewHolder.policemanName.setText(model.getName());
         policemanViewHolder.policemanRank.setText(model.getRank());
         policemanViewHolder.policemanArea.setText(model.getArea());
         policemanViewHolder.policemanPhone.setText(model.getMobile_no());
         policemanViewHolder.policemanEmail.setText(model.getEmail());
         policemanViewHolder.policemanRatingTV.setText(model.getRating() + " ★");
+        Glide.with(context)
+                .load(model.getImage_id())
+                .circleCrop()
+                .thumbnail(0.25f)
+                .into(policemanViewHolder.policemanImage);
        // policemanViewHolder.policemanRatingTV.setText(model.getRating() + " ★");
 //        policemanViewHolder.policemanRating.setRating(model.getRating());
 

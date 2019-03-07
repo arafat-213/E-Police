@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RequestList"></activity>
         <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,6 +42,11 @@
         <activity
             android:name=".activities.NotificationActivity"
             android:label="@string/lable_notification_activity" />
+        <activity android:name=".activities.SingleImageActivity"></activity>
+        <activity
+            android:name=".activities.NotificationDetailsActivity"
+            android:label="@string/title_activity_notification_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

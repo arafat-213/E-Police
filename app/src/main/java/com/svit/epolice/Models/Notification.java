@@ -1,6 +1,8 @@
 package com.svit.epolice.Models;
 
-public class Notification {
+import java.io.Serializable;
+
+public class Notification implements Serializable {
     private String notificationType;
     private String notificationContent;
     private String notificationImage;

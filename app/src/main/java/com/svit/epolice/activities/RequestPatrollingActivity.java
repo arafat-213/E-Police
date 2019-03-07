@@ -208,8 +208,13 @@ public class RequestPatrollingActivity extends AppCompatActivity implements View
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(RequestPatrollingActivity.this,RequestListActivity.class);
-        startActivity(intent);
+        switch (item.getItemId()) {
+            case R.id.action_history:
+                Intent intent = new Intent(RequestPatrollingActivity.this, RequestListActivity.class);
+                startActivity(intent);
+                break;
+        }
+
 
         return super.onOptionsItemSelected(item);
     }

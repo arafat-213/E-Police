@@ -57,6 +57,7 @@ public class PolicemenListActivity extends AppCompatActivity {
             }
         };
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        // To display the data in reverse order ie. Latest entries first
         ((LinearLayoutManager) layoutManager).setReverseLayout(true);
         policeRecyclerView.setLayoutManager(layoutManager);
         policeRecyclerView.setAdapter(mPolicemanAdapter);
