@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.ComplaintDetailsActivity"
+    tools:showIn="@layout/activity_complaint_details">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/complaintSenderTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="Jack Ryan"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/complaintDescTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/extra_large_text"
+            app:layout_constraintEnd_toEndOf="@+id/complaintAddressTV"
+            app:layout_constraintStart_toStartOf="@+id/complaintAddressTV"
+            app:layout_constraintTop_toBottomOf="@+id/complaintAddressTV" />
+
+        <TextView
+            android:id="@+id/complaintAreaTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Area"
+            app:layout_constraintEnd_toEndOf="@+id/complaintSenderTV"
+            app:layout_constraintStart_toStartOf="@+id/complaintSenderTV"
+            app:layout_constraintTop_toBottomOf="@+id/complaintSenderTV" />
+
+        <TextView
+            android:id="@+id/complaintAddressTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Address"
+            app:layout_constraintEnd_toEndOf="@+id/complaintAreaTV"
+            app:layout_constraintStart_toStartOf="@+id/complaintAreaTV"
+            app:layout_constraintTop_toBottomOf="@+id/complaintAreaTV" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

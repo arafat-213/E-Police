@@ -3,6 +3,9 @@ package com.svit.epolice.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -184,5 +187,25 @@ public class ComplaintActivity extends AppCompatActivity implements View.OnClick
             sendComplaint(complaint);
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_request, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_history:
+                Intent intent = new Intent(ComplaintActivity.this, ComplaintListActivity.class);
+                startActivity(intent);
+                break;
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

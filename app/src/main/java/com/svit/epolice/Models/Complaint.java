@@ -1,8 +1,9 @@
 package com.svit.epolice.Models;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Complaint {
+public class Complaint implements Serializable {
     private String media;
     private String area, address, description;
     private String username;

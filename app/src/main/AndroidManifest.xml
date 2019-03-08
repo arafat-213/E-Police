@@ -47,6 +47,11 @@
             android:name=".activities.NotificationDetailsActivity"
             android:label="@string/title_activity_notification_details"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activities.ComplaintDetailsActivity"
+            android:label="@string/title_activity_complaint_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activities.ComplaintListActivity"/>
     </application>
 
 </manifest>
