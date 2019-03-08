@@ -21,12 +21,12 @@ public class ComplaintListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     ComplaintsAdapter complaintsAdapter;
     ProgressBar mProgressBar;
+    String mKey;
     RecyclerView.LayoutManager layoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaint_list);
-
         init();
 
 
@@ -43,15 +43,17 @@ public class ComplaintListActivity extends AppCompatActivity {
     public void init() {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
-
         mRecyclerView = findViewById(R.id.complaintRV);
         mProgressBar = findViewById(R.id.complaintPB);
         mProgressBar.setVisibility(View.VISIBLE);
+        mKey = getIntent().getStringExtra("key");
         FirebaseApp.initializeApp(this);
 
         Query complainstRef = FirebaseDatabase.getInstance()
                 .getReference()
-                .child("complaints");
+                .child("complaints")
+                .orderByChild("uId")
+                .equalTo(mKey);
 
 
         FirebaseRecyclerOptions<Complaint> options =

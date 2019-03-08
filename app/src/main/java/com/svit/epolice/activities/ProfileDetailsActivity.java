@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,7 +52,7 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
     StorageTask mUploadTask;
     private Uri mImageUri;
     String oldImage;
-
+    String displayName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -195,6 +196,7 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
                     User user = singleSnapshot.getValue(User.class);
                     Log.d(TAG, "onDataChange: Query method - found user: " + user.toString());
                     //user is here. Now show name and phone no data into widgets
+                    displayName = user.getName();
                     nameET.setText(user.getName());
                     emailET.setText(user.getEmail());
                     phoneNoET.setText(user.getMobileNumber());
@@ -206,6 +208,12 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
                             .load(user.getProfile_pic_url())
                             .circleCrop()
                             .into(profilePicIV);
+                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(displayName).build();
+                    Log.e(TAG, "loadUserProfile: Display name" + displayName);
+                    firebaseUser.updateProfile(profileUpdates);
                 }
                 mProgressBar.setVisibility(View.INVISIBLE);
             }

@@ -1,24 +1,25 @@
 package com.svit.epolice.Models;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 public class Complaint implements Serializable {
     private String media;
     private String area, address, description;
     private String username;
+    private String uId;
 
 
 
     public Complaint() {
     }
 
-    public Complaint(String media, String area, String address, String description,String username) {
+    public Complaint(String media, String area, String address, String description, String username, String uId) {
         this.media = media;
         this.area = area;
         this.address = address;
         this.description = description;
         this.username = username;
+        this.uId = uId;
     }
 
     public String getMedia() {
@@ -58,7 +59,13 @@ public class Complaint implements Serializable {
 
     public void setUsername(String username) { this.username = username; }
 
+    public String getuId() {
+        return uId;
+    }
 
+    public void setuId(String uId) {
+        this.uId = uId;
+    }
 
     @Override
     public String toString() {

@@ -3,6 +3,7 @@ package com.svit.epolice.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -53,6 +55,8 @@ public class ComplaintActivity extends AppCompatActivity implements View.OnClick
     Button submitBTN;
     ProgressBar mProgressBar;
     ImageView complaintIV;
+    FirebaseUser mCurrentUser;
+    String mKey;
     private ArrayList<String> stationArrayList;
 
     @Override
@@ -82,8 +86,10 @@ public class ComplaintActivity extends AppCompatActivity implements View.OnClick
         mStorageRef= FirebaseStorage.getInstance().getReference().child("complaints/");
         mComplaintRef = FirebaseDatabase.getInstance().getReference().child("complaints/");
         fileRef = mStorageRef.child(System.currentTimeMillis()+"");
-
-
+        mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+        mKey = mCurrentUser.getUid();
+        username = mCurrentUser.getDisplayName();
+        Log.e(TAG, "init: " + username);
     }
 
     @Override
@@ -100,7 +106,8 @@ public class ComplaintActivity extends AppCompatActivity implements View.OnClick
                     username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
                 }
                 Complaint complaint = new Complaint("", areaSpinner.getSelectedItem().toString(),
-                        addressET.getText().toString(), descriptionET.getText().toString(), username);
+                        addressET.getText().toString(), descriptionET.getText().toString(),
+                        username, mKey);
                 uploadImage(complaint);
                 break;
         }
@@ -201,6 +208,7 @@ public class ComplaintActivity extends AppCompatActivity implements View.OnClick
         switch (item.getItemId()) {
             case R.id.action_history:
                 Intent intent = new Intent(ComplaintActivity.this, ComplaintListActivity.class);
+                intent.putExtra("key", mKey);
                 startActivity(intent);
                 break;
         }
