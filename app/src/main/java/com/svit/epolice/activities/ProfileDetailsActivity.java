@@ -171,6 +171,7 @@ public class ProfileDetailsActivity extends AppCompatActivity implements View.On
             mImageUri = data.getData();
             Glide.with(getApplicationContext())
                     .load(mImageUri)
+                    .thumbnail(0.25f)
                     .circleCrop()
                     .into(profilePicIV);
             //profilePicIV.setImageURI(mImageUri);

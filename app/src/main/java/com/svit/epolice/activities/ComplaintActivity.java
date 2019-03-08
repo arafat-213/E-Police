@@ -96,7 +96,9 @@ public class ComplaintActivity extends AppCompatActivity implements View.OnClick
                 if(!isAnonymousCB.isChecked()){
                     username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
                 }
-                uploadImage();
+                Complaint complaint = new Complaint("", areaSpinner.getSelectedItem().toString(),
+                        addressET.getText().toString(), descriptionET.getText().toString(), username);
+                uploadImage(complaint);
                 break;
         }
     }
@@ -134,13 +136,29 @@ public class ComplaintActivity extends AppCompatActivity implements View.OnClick
             // complaintIV.setImageURI(mImageUri);
             Glide.with(this)
                     .load(mImageUri)
+                    .thumbnail(0.25f)
                     .circleCrop()
                     .into(complaintIV);
         }
     }
 
-    public void uploadImage(){
+    public void sendComplaint(Complaint complaint) {
+        String key = mComplaintRef.push().getKey();
+        mComplaintRef.child(key).setValue(complaint)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(ComplaintActivity.this, "Complaint Uploaded Successfully",
+                                Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                });
+    }
+
+    public void uploadImage(final Complaint complaint) {
         if(mImageUri!= null){
+            // Image is selected
             final StorageReference fileRef = mStorageRef.child(System.currentTimeMillis()
                     +"");//+getFileExtension(mImageUri));
             mUploadTask = fileRef.putFile(mImageUri)
@@ -152,41 +170,18 @@ public class ComplaintActivity extends AppCompatActivity implements View.OnClick
                             result.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-                                    Complaint complaintobj = new Complaint(uri.toString(),areaSpinner.getSelectedItem().toString(),
-                                            addressET.getText().toString(),descriptionET.getText().toString(),username);
-                                    String key = mComplaintRef.push().getKey();
-                                    mComplaintRef.child(key).setValue(complaintobj)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    mProgressBar.setVisibility(View.INVISIBLE);
-                                                    Toast.makeText(ComplaintActivity.this,"Complaint Uploaded Successfully",
-                                                            Toast.LENGTH_LONG).show();
-                                                    addressET.setText("");
-                                                    descriptionET.setText("");
-                                                    complaintIV.setImageResource(R.drawable.ic_person_black_24dp);
-                                                }
-                                            });
+                                    complaint.setMedia(uri.toString());
+                                    sendComplaint(complaint);
                                 }
                             });
-
-
 
                         }
                     });
         }
         else{
-            String key = mComplaintRef.push().getKey();
-            mComplaintRef.child(key).setValue(
-                    new Complaint("No Image selected",areaSpinner.getSelectedItem().toString(),
-                            addressET.toString(),descriptionET.toString(),username)
-            ).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    addressET.setText("");
-                    descriptionET.setText("");
-                }
-            });
+            // No image file selected
+            complaint.setMedia("");
+            sendComplaint(complaint);
         }
 
     }
