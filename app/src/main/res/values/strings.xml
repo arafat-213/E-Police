@@ -135,4 +135,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_complaint_details">ComplaintDetailsActivity</string>
+    <string name="already_registered_sign_in_instead">Already registered? Sign in instead</string>
 </resources>

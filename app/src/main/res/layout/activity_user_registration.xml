@@ -9,13 +9,15 @@
     <ProgressBar
         android:id="@+id/requestPB"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/white"
         android:indeterminate="true"
         android:indeterminateTint="@color/colorPrimaryDark"
         android:max="100"
         android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -60,8 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="20dp"
-        android:text="TextView"
+        android:text="@string/already_registered_sign_in_instead"
         app:layout_constraintBottom_toTopOf="@+id/emailET"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="@string/btn_label_sign_in" />
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

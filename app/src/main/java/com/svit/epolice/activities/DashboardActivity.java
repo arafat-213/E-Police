@@ -15,6 +15,7 @@ import com.svit.epolice.adapters.DashboardModuleAdapter;
 import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,6 +41,7 @@ public class DashboardActivity extends AppCompatActivity {
         arrayList.add(new DashboardModule("Connect with us", R.drawable.icon_connect));
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
+        //  LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         DashboardModuleAdapter dashboardModuleAdapter = new DashboardModuleAdapter(arrayList);
@@ -52,6 +54,12 @@ public class DashboardActivity extends AppCompatActivity {
                     "Ye kaisan hua",
                     Toast.LENGTH_SHORT
             ).show();
+        }
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.DarkTheme);
+        } else {
+            setTheme(R.style.AppTheme);
         }
     }
 
@@ -72,6 +80,12 @@ public class DashboardActivity extends AppCompatActivity {
         } else if (id == R.id.optionEditProfile) {
             Intent intent = new Intent(DashboardActivity.this, ProfileDetailsActivity.class);
             startActivity(intent);
+        } else if (id == R.id.optionDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            recreate();
+        } else if (id == R.id.optionLightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            recreate();
         }
         return super.onOptionsItemSelected(item);
     }

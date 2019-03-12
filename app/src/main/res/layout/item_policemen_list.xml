@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/backgroundcolor"
     tools:layout_editor_absoluteY="81dp">
 
     <com.google.android.material.card.MaterialCardView
+        app:cardBackgroundColor="?attr/cardbackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/mtrl_card_spacing"
@@ -35,6 +37,7 @@
                 app:srcCompat="@drawable/jack" />
 
             <TextView
+                android:textColor="?attr/textcolor"
                 android:id="@+id/policemanNameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,6 +52,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:textColor="?attr/textcolor"
                 android:id="@+id/policemanAreaTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -62,6 +66,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/policemanDesignationTV" />
 
             <TextView
+                android:textColor="?attr/textcolor"
                 android:id="@+id/policemanDesignationTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -84,6 +89,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/locationIconIV" />
 
             <TextView
+                android:textColor="?attr/textcolor"
                 android:id="@+id/policemanPhoneTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -94,6 +100,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/policemanAreaTV" />
 
             <TextView
+                android:textColor="?attr/textcolor"
                 android:id="@+id/policemanEmailTV"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
