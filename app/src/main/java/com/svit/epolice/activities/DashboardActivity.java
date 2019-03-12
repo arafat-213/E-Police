@@ -86,6 +86,8 @@ public class DashboardActivity extends AppCompatActivity {
         } else if (id == R.id.optionLightMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             recreate();
+        } else if (id == R.id.optionAboutUs) {
+
         }
         return super.onOptionsItemSelected(item);
     }

@@ -17,6 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.svit.epolice.R;
+import com.svit.epolice.utilities.DataValidation;
 
 import java.util.regex.Pattern;
 
@@ -71,30 +72,34 @@ public class UserRegistrationActivity extends AppCompatActivity {
                 if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
                     if (isEmailValid(email)) {
                         Log.e(TAG, "Valid email");
-                        mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
+                        if (DataValidation.isValidEmail(email)) {
+                            mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
 
-                                    if (progressBar.getVisibility() == View.VISIBLE) {
-                                        progressBar.setVisibility(View.INVISIBLE);
+                                        if (progressBar.getVisibility() == View.VISIBLE) {
+                                            progressBar.setVisibility(View.INVISIBLE);
+                                        }
+
+                                        Log.e(TAG, "Task successful");
+                                        Intent intent = new Intent(UserRegistrationActivity.this, SignInActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                    } else {
+
+                                        if (progressBar.getVisibility() == View.VISIBLE) {
+                                            progressBar.setVisibility(View.INVISIBLE);
+                                        }
+
+                                        Log.e(TAG, "Task unsuccessful");
+                                        Toast.makeText(getApplicationContext(), "Failed to sign up", Toast.LENGTH_LONG).show();
                                     }
-
-                                    Log.e(TAG, "Task successful");
-                                    Intent intent = new Intent(UserRegistrationActivity.this, SignInActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                } else {
-
-                                    if (progressBar.getVisibility() == View.VISIBLE) {
-                                        progressBar.setVisibility(View.INVISIBLE);
-                                    }
-
-                                    Log.e(TAG, "Task unsuccessful");
-                                    Toast.makeText(getApplicationContext(), "Failed to sign up", Toast.LENGTH_LONG).show();
                                 }
-                            }
-                        });
+                            });
+                        } else {
+                            // Invalid mail toast
+                        }
                     } else {
                         Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_LONG).show();
                     }

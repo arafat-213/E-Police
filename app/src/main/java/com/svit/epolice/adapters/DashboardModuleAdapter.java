@@ -1,14 +1,16 @@
 package com.svit.epolice.adapters;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.svit.epolice.Models.DashboardModule;
 import com.svit.epolice.R;
@@ -22,6 +24,7 @@ import com.svit.epolice.activities.TwitterActivity;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModuleAdapter.DashboardModuleViewHolder> {
@@ -48,7 +51,7 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
 
         dashboardModuleViewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 int id = dashboardModuleViewHolder.getAdapterPosition();
                 mContext = view.getContext();
                 Intent intent;
@@ -62,9 +65,29 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
                         view.getContext().startActivity(intent);
                         break;
                     case 2:
-                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
-//                        intent = new Intent(view.getContext(), PolicemenListActivity.class);
-//                        view.getContext().startActivity(intent);
+                        Dialog myDialog = new AlertDialog.Builder(view.getContext())
+                                .setTitle("Alert!")
+                                .setMessage("This will launch google maps to display nearby police station. \nPress ok to continue")
+                                // Specifying a listener allows you to take an action before dismissing the dialog.
+                                // The dialog is automatically dismissed when a dialog button is clicked.
+                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Continue with delete operation
+                                        Uri gmmIntentUri = Uri.parse("geo:0,0?q=policestation");
+                                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                                        mapIntent.setPackage("com.google.android.apps.maps");
+                                        view.getContext().startActivity(mapIntent);
+                                    }
+                                })
+                                // A null listener allows the button to dismiss the dialog and take no further action.
+                                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
                         break;
                     case 3:
                         intent = new Intent(view.getContext(), RequestPatrollingActivity.class);

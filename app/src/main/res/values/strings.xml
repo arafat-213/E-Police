@@ -136,4 +136,5 @@
     </string>
     <string name="title_activity_complaint_details">ComplaintDetailsActivity</string>
     <string name="already_registered_sign_in_instead">Already registered? Sign in instead</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
