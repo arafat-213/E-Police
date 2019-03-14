@@ -17,6 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.svit.epolice.R;
+import com.svit.epolice.dialogs.PasswordResetDialog;
 
 import java.util.regex.Pattern;
 
@@ -31,6 +32,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private Button signInButton;
     private EditText emailET, passwordET;
     TextView signUpTV;
+    TextView forgotPasswordTV;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String TAG = "UserRegistration";
 
@@ -56,6 +58,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         signUpTV = findViewById(R.id.signUpTV);
         signUpTV.setOnClickListener(this);
+
+        forgotPasswordTV = findViewById(R.id.forgotPasswordTV);
+        forgotPasswordTV.setOnClickListener(this);
     }
 
     @Override
@@ -85,6 +90,10 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.signUpTV:
                 Intent intent = new Intent(SignInActivity.this, UserRegistrationActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.forgotPasswordTV:
+                PasswordResetDialog passwordResetDialog = new PasswordResetDialog();
+                passwordResetDialog.show(getSupportFragmentManager(), "dialog_password_reset");
                 break;
         }
 

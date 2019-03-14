@@ -14,7 +14,7 @@
     <string name="hint_enter_dob">enter date of birth</string>
     <string name="police_station">Police station</string>
     <string name="police_officer">Police officer</string>
-    <string name="new_user_sign_up_here">New user? Sign up here</string>
+    <string name="new_user_sign_up_here">Don\'t have account? Sign up here</string>
     <string name="hint_area">Area</string>
     <string name="label_police_station">Police station</string>
     <string name="label_police_man">Police man</string>
@@ -137,4 +137,6 @@
     <string name="title_activity_complaint_details">ComplaintDetailsActivity</string>
     <string name="already_registered_sign_in_instead">Already registered? Sign in instead</string>
     <string name="title_activity_maps">Map</string>
+    <string name="label_reset_password">Reset Password</string>
+    <string name="label_forgot_password">Forgot password?</string>
 </resources>
