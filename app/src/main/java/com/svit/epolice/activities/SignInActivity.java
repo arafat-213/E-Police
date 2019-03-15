@@ -79,13 +79,13 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     if (isEmailValid(email)) {
                         signInWithEmailAndPassword(email, password);
                     } else {
+                        progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_LONG).show();
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "Field Can Not Be Empty.", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
-
-
                 break;
             case R.id.signUpTV:
                 Intent intent = new Intent(SignInActivity.this, UserRegistrationActivity.class);
@@ -113,14 +113,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             //intent.putExtra("firebase_user", user);
                             startActivity(intent);
-
-
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(SignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
                 });

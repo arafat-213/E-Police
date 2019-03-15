@@ -1,6 +1,8 @@
 package com.svit.epolice.activities;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.FirebaseApp;
@@ -10,8 +12,6 @@ import com.svit.epolice.Models.Notification;
 import com.svit.epolice.R;
 import com.svit.epolice.adapters.NotificationAdapter;
 
-import java.util.ArrayList;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,8 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class NotificationActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private ArrayList<Notification> notificationArrayList;
     NotificationAdapter notificationAdapter;
+    ProgressBar notificationPB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,8 @@ public class NotificationActivity extends AppCompatActivity {
         getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
 
         mRecyclerView = findViewById(R.id.notificationRV);
-
+        notificationPB = findViewById(R.id.notificationPB);
+        notificationPB.setVisibility(View.VISIBLE);
         FirebaseApp.initializeApp(this);
 
         Query notificationRef = FirebaseDatabase.getInstance()
@@ -43,12 +44,16 @@ public class NotificationActivity extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<Notification>()
                         .setQuery(notificationRef, Notification.class)
                         .build();
-        notificationAdapter = new NotificationAdapter(options, getApplicationContext());
+        notificationAdapter = new NotificationAdapter(options, getApplicationContext()) {
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                notificationPB.setVisibility(View.INVISIBLE);
+            }
+        };
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(notificationAdapter);
-
-
     }
 
     @Override
