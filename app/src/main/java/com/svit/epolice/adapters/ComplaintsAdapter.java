@@ -22,6 +22,13 @@ public class ComplaintsAdapter extends FirebaseRecyclerAdapter<Complaint, Compla
 
     Context mContext;
 
+    private static final String LABEL_SEEN = "SEEN";
+    private static final String LABEL_PENDING = "PENDING";
+    private static final String LABEL_COMPLETED = "COMPLETED";
+
+    private static final int PENDING = 0;
+    private static final int SEEN = 1;
+    private static final int COMPLETED = 2;
 
 
     /**
@@ -57,6 +64,20 @@ public class ComplaintsAdapter extends FirebaseRecyclerAdapter<Complaint, Compla
                 mContext.startActivity(intent);
             }
         });
+
+        switch (model.getStatus()) {
+            case PENDING:
+                complaintsViewHolder.complaintStatusTV.setText(LABEL_PENDING);
+                break;
+            case SEEN:
+                complaintsViewHolder.complaintStatusTV.setText(LABEL_SEEN);
+                complaintsViewHolder.complaintStatusTV.setBackgroundResource(R.color.black);
+                break;
+            case COMPLETED:
+                complaintsViewHolder.complaintStatusTV.setText(LABEL_COMPLETED);
+                complaintsViewHolder.complaintStatusTV.setBackgroundResource(R.color.colorAccent);
+                break;
+        }
     }
 
     @NonNull
@@ -69,14 +90,16 @@ public class ComplaintsAdapter extends FirebaseRecyclerAdapter<Complaint, Compla
 
     class ComplaintsViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView complaintImage;
-        public TextView complaintName, complaintContent;
+        ImageView complaintImage;
+        TextView complaintName, complaintContent;
+        TextView complaintStatusTV;
 
-        public ComplaintsViewHolder(@NonNull View itemView) {
+        ComplaintsViewHolder(@NonNull View itemView) {
             super(itemView);
             complaintImage = itemView.findViewById(R.id.complaintIV);
             complaintName = itemView.findViewById(R.id.complaintNameTV);
             complaintContent = itemView.findViewById(R.id.complaintContentET);
+            complaintStatusTV = itemView.findViewById(R.id.complaintStatusTV);
         }
     }
 }

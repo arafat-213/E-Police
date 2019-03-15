@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +28,7 @@ public class PasswordResetDialog extends DialogFragment {
     private Context mContext;
     private Button submitBTN;
     private EditText emailET;
+    private ProgressBar resetPasswordPB;
 
     @Nullable
     @Override
@@ -35,9 +37,11 @@ public class PasswordResetDialog extends DialogFragment {
         View view = inflater.inflate(R.layout.dialog_password_reset, container, false);
         emailET = view.findViewById(R.id.password_reset_input_email);
         submitBTN = view.findViewById(R.id.password_reset_submit_button);
+        resetPasswordPB = view.findViewById(R.id.reset_password_progressbar);
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                resetPasswordPB.setVisibility(View.VISIBLE);
                 String email = emailET.getText().toString();
                 if (DataValidation.isValidEmail(email)) {
                     sendPasswordResetEmail(email);
@@ -47,6 +51,7 @@ public class PasswordResetDialog extends DialogFragment {
                             , "Invalid email"
                             , Toast.LENGTH_LONG
                     ).show();
+                    resetPasswordPB.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -68,9 +73,10 @@ public class PasswordResetDialog extends DialogFragment {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             Log.d(TAG, "onComplete: No user associated with that email.");
-                            Toast.makeText(mContext, "No User is Associated with that Email",
+                            Toast.makeText(mContext, "No user is Associated with that Email",
                                     Toast.LENGTH_SHORT).show();
                         }
+                        resetPasswordPB.setVisibility(View.INVISIBLE);
                     }
                 });
     }

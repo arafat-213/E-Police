@@ -42,7 +42,7 @@ public class ComplaintActivity extends AppCompatActivity implements View.OnClick
 
 
     private static final int PICK_IMAGE_REQUEST=1;
-
+    private static final int COMPLAINT_PENDING = 0;
     private static final String TAG = "ComplaintActivity";
     DatabaseReference mComplaintRef;
     StorageReference mStorageRef,fileRef;
@@ -113,7 +113,7 @@ public class ComplaintActivity extends AppCompatActivity implements View.OnClick
                 }
                 Complaint complaint = new Complaint("", areaSpinner.getSelectedItem().toString(),
                         addressET.getText().toString(), descriptionET.getText().toString(),
-                        username, mKey);
+                        username, mKey, COMPLAINT_PENDING);
                 uploadImage(complaint);
                 break;
         }

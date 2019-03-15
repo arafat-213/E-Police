@@ -7,19 +7,20 @@ public class Complaint implements Serializable {
     private String area, address, description;
     private String username;
     private String uId;
-
+    private int status;
 
 
     public Complaint() {
     }
 
-    public Complaint(String media, String area, String address, String description, String username, String uId) {
+    public Complaint(String media, String area, String address, String description, String username, String uId, int status) {
         this.media = media;
         this.area = area;
         this.address = address;
         this.description = description;
         this.username = username;
         this.uId = uId;
+        this.status = status;
     }
 
     public String getMedia() {
@@ -67,14 +68,24 @@ public class Complaint implements Serializable {
         this.uId = uId;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Complaint{" +
-                "media=" + media + '\'' +
+                "media='" + media + '\'' +
                 ", area='" + area + '\'' +
                 ", address='" + address + '\'' +
                 ", description='" + description + '\'' +
-                ", username=" + username +
+                ", username='" + username + '\'' +
+                ", uId='" + uId + '\'' +
+                ", status=" + status +
                 '}';
     }
 }
