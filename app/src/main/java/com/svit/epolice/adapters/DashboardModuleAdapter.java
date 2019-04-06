@@ -40,7 +40,7 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
     @Override
     public DashboardModuleViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-        View view = inflater.inflate(R.layout.item_option, viewGroup, false);
+        View view = inflater.inflate(R.layout.item_dashboard_module, viewGroup, false);
         return new DashboardModuleViewHolder(view);
     }
 

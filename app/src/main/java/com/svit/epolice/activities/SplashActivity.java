@@ -33,7 +33,7 @@ public class SplashActivity extends AwesomeSplash {
         //Choose LOGO OR PATH; if you don't provide String value for path it's logo by default
 
         //Customize Logo
-        configSplash.setLogoSplash(R.mipmap.ic_launcher_round); //or any other drawable
+        configSplash.setLogoSplash(R.mipmap.ic_launcher); //or any other drawable
         configSplash.setAnimLogoSplashDuration(1000); //int ms
         configSplash.setAnimLogoSplashTechnique(Techniques.FadeIn); //choose one form Techniques (ref: https://github.com/daimajia/AndroidViewAnimations)
 
@@ -48,8 +48,8 @@ public class SplashActivity extends AwesomeSplash {
 //        configSplash.setPathSplashFillColor(R.color.lightGrey); //path object filling color
 
         //Customize Title
-        configSplash.setTitleSplash("E-police");
-        configSplash.setTitleTextColor(R.color.lightGrey);
+        configSplash.setTitleSplash("E-police \nCitizen");
+        configSplash.setTitleTextColor(R.color.lightGray);
         configSplash.setTitleTextSize(30f); //float value
         configSplash.setAnimTitleDuration(3000);
         configSplash.setAnimTitleTechnique(Techniques.FlipInX);
