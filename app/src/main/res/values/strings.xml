@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">E-Police - Citizen</string>
+    <string name="app_name">Citizen</string>
     <string name="hint_enter_addres">enter address</string>
     <string name="hint_complainnt_description">enter description</string>
     <string name="keep_me_anonymous">Keep Me Anonymous</string>
